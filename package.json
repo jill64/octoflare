@@ -1,0 +1,54 @@
+{
+  "name": "octoflare",
+  "version": "0.0.0",
+  "description": "A framework for building GitHub Apps with Cloudflare Worker",
+  "type": "module",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "author": "jill64 <intents.turrets0h@icloud.com> (https://github.com/jill64)",
+  "bugs": "https://github.com/jill64/octoflare/issues",
+  "homepage": "https://github.com/jill64/octoflare#readme",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "github",
+    "app"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./workers": {
+      "types": "./dist/workers/index.d.ts",
+      "default": "./dist/workers/index.js"
+    },
+    "./octokit": {
+      "types": "./dist/octokit/index.d.ts",
+      "default": "./dist/octokit/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jill64/octoflare.git"
+  },
+  "scripts": {
+    "build": "tsc && npx publint",
+    "lint": "npx prettier --check . && npx eslint && tsc",
+    "format": "npx prettier --write ."
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "6.7.4",
+    "@typescript-eslint/parser": "6.7.4",
+    "typescript": "5.2.2",
+    "@types/node": "20.8.2"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "4.20231002.0",
+    "@octokit/webhooks-types": "7.3.1",
+    "octokit": "3.1.1"
+  }
+}

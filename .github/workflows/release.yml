@@ -1,0 +1,10 @@
+name: Release
+
+on:
+  push:
+    branches: main
+
+jobs:
+  release:
+    uses: jill64/semantic-manager/.github/workflows/release-npm.yml@main
+    secrets: inherit
