@@ -5,16 +5,16 @@ A framework for building GitHub Apps with Cloudflare Worker
 ## Installation
 
 ```sh
-npm i octoflare-app
+npm i octoflare
 ```
 
 ## Example
 
 ```js
 // src/index.js
-import { octoflare } from 'octoflare-app'
+import { octoflare } from 'octoflare'
 
-export default octoflare((request, env, { app, payload }) => {
+export default octoflare(({ request, env, app, payload }) => {
   // Application Code
 })
 ```
@@ -27,4 +27,4 @@ compatibility_date = "YYYY-MM-DD"
 compatibility_flags = ["nodejs_compat"]
 ```
 
-[Type Definition](./src/types/OctoflareApp.ts)
+[Type Definition](./src/types/OctoflareHandler.ts)
