@@ -20,7 +20,7 @@ export const octoflare = <Env extends InternalEnv>(
 
     const app = new App({
       appId: env.OCTOFLARE_APP_ID,
-      privateKey: env.OCTOFLARE_APP_PRIVATE_KEY_PKCS8
+      privateKey: env.OCTOFLARE_PRIVATE_KEY_PKCS8
     })
 
     try {

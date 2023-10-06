@@ -36,7 +36,7 @@ export const verifyRequest = ({
   }
 
   const signature = crypto
-    .createHmac('sha256', env.OCTOFLARE_APP_WEBHOOK_SECRET)
+    .createHmac('sha256', env.OCTOFLARE_WEBHOOK_SECRET)
     .update(body)
     .digest('hex')
 
