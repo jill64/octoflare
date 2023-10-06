@@ -1,4 +1,6 @@
-# octoflare
+# Octoflare
+
+[![CI](https://github.com/jill64/octoflare/actions/workflows/ci.yml/badge.svg)](https://github.com/jill64/octoflare/actions/workflows/ci.yml)
 
 A framework for building GitHub Apps with Cloudflare Worker
 
