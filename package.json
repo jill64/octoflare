@@ -15,7 +15,8 @@
     "cloudflare",
     "workers",
     "github",
-    "app"
+    "app",
+    "webhook"
   ],
   "exports": {
     ".": {
