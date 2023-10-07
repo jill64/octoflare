@@ -3,10 +3,5 @@ name: CI
 on: push
 
 jobs:
-  lint:
-    uses: jill64/workflows/.github/workflows/lint.yml@main
-    secrets:
-      APP_ID: ${{ secrets.APP_ID }}
-      APP_PEM: ${{ secrets.APP_PEM }}
   build:
     uses: jill64/workflows/.github/workflows/build.yml@main
