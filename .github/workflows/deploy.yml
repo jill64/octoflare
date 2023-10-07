@@ -2,11 +2,18 @@ name: Deploy
 
 on:
   workflow_call:
+    inputs:
+      deploy-command:
+        default: npm run deploy
+        type: string
+      concurrency-group:
+        default: deploy
+        type: string
     secrets:
       CLOUDFLARE_API_TOKEN:
         required: true
 
-concurrency: deploy
+concurrency: ${{ inputs.concurrency-group }}
 
 jobs:
   deploy:
@@ -27,6 +34,6 @@ jobs:
           run_install: true
 
       - name: Deploy
-        run: pnpm run deploy
+        run: ${{ inputs.deploy-command }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
