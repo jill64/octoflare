@@ -1,4 +1,4 @@
-name: Deploy Worker
+name: Deploy
 
 on:
   workflow_call:
@@ -6,7 +6,7 @@ on:
       CLOUDFLARE_API_TOKEN:
         required: true
 
-concurrency: deploy-worker
+concurrency: deploy
 
 jobs:
   deploy:
