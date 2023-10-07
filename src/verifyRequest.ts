@@ -27,20 +27,12 @@ export const verifyRequest = ({
     })
   }
 
-  const headerSignature = headers.get('X-Hub-Signature-256')
-
-  if (!headerSignature) {
-    return new Response(null, {
-      status: 403
-    })
-  }
-
   const signature = crypto
     .createHmac('sha256', env.OCTOFLARE_WEBHOOK_SECRET)
     .update(body)
     .digest('hex')
 
-  if (`sha256=${signature}` !== headerSignature) {
+  if (`sha256=${signature}` !== headers.get('X-Hub-Signature-256')) {
     return new Response(null, {
       status: 403
     })
