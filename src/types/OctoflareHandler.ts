@@ -7,4 +7,4 @@ export type OctoflareHandler<Env extends InternalEnv> = (context: {
   env: Env
   app: App
   payload: WebhookEvent
-}) => Promise<Response | void> | Response | void
+}) => Promise<Response> | Response

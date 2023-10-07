@@ -1,3 +1,4 @@
+import { attempt } from '@jill64/attempt'
 import { WebhookEvent } from '@octokit/webhooks-types'
 import { App } from 'octokit'
 import { InternalEnv } from './types/InternalEnv.js'
@@ -23,21 +24,14 @@ export const octoflare = <Env extends InternalEnv>(
       privateKey: env.OCTOFLARE_PRIVATE_KEY_PKCS8
     })
 
-    try {
-      const response = await handler({ request, env, app, payload })
-
-      return response
-        ? response
-        : new Response(null, {
-            status: 204
-          })
-    } catch (e) {
-      return new Response(
-        JSON.stringify(e instanceof Error ? e.message : String(e), null, 2),
-        {
+    const response = await attempt(
+      () => handler({ request, env, app, payload }),
+      (e) =>
+        new Response(JSON.stringify(e?.message, null, 2), {
           status: 500
-        }
-      )
-    }
+        })
+    )
+
+    return response
   }
 })
