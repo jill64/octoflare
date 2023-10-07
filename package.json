@@ -41,10 +41,11 @@
     "format": "npx prettier --write ."
   },
   "devDependencies": {
+    "@jill64/attempt": "^1.0.6",
+    "@types/node": "20.8.2",
     "@typescript-eslint/eslint-plugin": "6.7.4",
     "@typescript-eslint/parser": "6.7.4",
-    "typescript": "5.2.2",
-    "@types/node": "20.8.2"
+    "typescript": "5.2.2"
   },
   "dependencies": {
     "@cloudflare/workers-types": "4.20231002.0",
