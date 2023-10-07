@@ -1,7 +1,0 @@
-name: PR
-
-on: pull_request
-
-jobs:
-  version-check:
-    uses: jill64/semantic-manager/.github/workflows/version-check.yml@main
