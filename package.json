@@ -16,7 +16,8 @@
     "workers",
     "github",
     "app",
-    "webhook"
+    "webhook",
+    "octokit"
   ],
   "exports": {
     ".": {
