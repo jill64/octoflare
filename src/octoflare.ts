@@ -27,7 +27,7 @@ export const octoflare = <Env extends InternalEnv>(
     const response = await attempt(
       () => handler({ request, env, app, payload }),
       (e) =>
-        new Response(JSON.stringify(e?.message, null, 2), {
+        new Response(JSON.stringify(e, null, 2), {
           status: 500
         })
     )
