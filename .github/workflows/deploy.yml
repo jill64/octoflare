@@ -6,14 +6,11 @@ on:
       deploy-command:
         default: npm run deploy
         type: string
-      concurrency-group:
-        default: deploy
-        type: string
     secrets:
       CLOUDFLARE_API_TOKEN:
         required: true
 
-concurrency: ${{ inputs.concurrency-group }}
+concurrency: deploy
 
 jobs:
   deploy:
