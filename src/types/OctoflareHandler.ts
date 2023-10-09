@@ -1,8 +1,8 @@
 import { WebhookEvent } from '@octokit/webhooks-types'
 import { App } from 'octokit'
-import { InternalEnv } from './InternalEnv.js'
+import { OctoflareEnv } from './OctoflareEnv.js'
 
-export type OctoflareHandler<Env extends InternalEnv = InternalEnv> =
+export type OctoflareHandler<Env extends OctoflareEnv = OctoflareEnv> =
   (context: {
     request: Request
     env: Env

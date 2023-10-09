@@ -1,20 +1,42 @@
 import { attempt } from '@jill64/attempt'
 import { WebhookEvent } from '@octokit/webhooks-types'
+import crypto from 'node:crypto'
 import { App } from 'octokit'
-import { InternalEnv } from './types/InternalEnv.js'
+import { OctoflareEnv } from './types/OctoflareEnv.js'
 import { OctoflareHandler } from './types/OctoflareHandler.js'
-import { verifyRequest } from './verifyRequest.js'
 
-export const octoflare = <Env extends InternalEnv>(
+export const octoflare = <Env extends OctoflareEnv = OctoflareEnv>(
   handler: OctoflareHandler<Env>
 ) => ({
   async fetch(request: Request, env: Env): Promise<Response> {
+    const { headers, method } = request
+
+    if (method === 'GET' || method === 'HEAD') {
+      return new Response(null, {
+        status: 204
+      })
+    }
+
+    if (method !== 'POST') {
+      return new Response(null, {
+        status: 405,
+        headers: {
+          Allow: 'GET, HEAD, POST'
+        }
+      })
+    }
+
     const body = await request.text()
 
-    const invalidResponse = verifyRequest({ body, request, env })
+    const signature = crypto
+      .createHmac('sha256', env.OCTOFLARE_WEBHOOK_SECRET)
+      .update(body)
+      .digest('hex')
 
-    if (invalidResponse) {
-      return invalidResponse
+    if (`sha256=${signature}` !== headers.get('X-Hub-Signature-256')) {
+      return new Response(null, {
+        status: 403
+      })
     }
 
     const payload = JSON.parse(body) as WebhookEvent
