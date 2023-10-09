@@ -5,10 +5,10 @@ import { App } from 'octokit'
 import { OctoflareEnv } from './types/OctoflareEnv.js'
 import { OctoflareHandler } from './types/OctoflareHandler.js'
 
-export const octoflare = <Env extends OctoflareEnv = OctoflareEnv>(
-  handler: OctoflareHandler<Env>
+export const octoflare = <Env extends Record<string, unknown>>(
+  handler: OctoflareHandler<Env & OctoflareEnv>
 ) => ({
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: Env & OctoflareEnv): Promise<Response> {
     const { headers, method } = request
 
     if (method === 'GET' || method === 'HEAD') {
