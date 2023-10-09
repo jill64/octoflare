@@ -1,59 +1,64 @@
-import { attempt } from '@jill64/attempt'
 import { WebhookEvent } from '@octokit/webhooks-types'
-import crypto from 'node:crypto'
 import { App } from 'octokit'
 import { OctoflareEnv } from './types/OctoflareEnv.js'
 import { OctoflareHandler } from './types/OctoflareHandler.js'
+import { makeInstallation } from './utils/makeInstallation.js'
+import { verify } from './utils/verify.js'
 
 export const octoflare = <Env extends Record<string, unknown>>(
   handler: OctoflareHandler<Env & OctoflareEnv>
 ) => ({
   async fetch(request: Request, env: Env & OctoflareEnv): Promise<Response> {
-    const { headers, method } = request
+    const result = await verify({ request, env })
 
-    if (method === 'GET' || method === 'HEAD') {
-      return new Response(null, {
-        status: 204
-      })
+    if (result instanceof Response) {
+      return result
     }
 
-    if (method !== 'POST') {
-      return new Response(null, {
-        status: 405,
-        headers: {
-          Allow: 'GET, HEAD, POST'
-        }
-      })
-    }
-
-    const body = await request.text()
-
-    const signature = crypto
-      .createHmac('sha256', env.OCTOFLARE_WEBHOOK_SECRET)
-      .update(body)
-      .digest('hex')
-
-    if (`sha256=${signature}` !== headers.get('X-Hub-Signature-256')) {
-      return new Response(null, {
-        status: 403
-      })
-    }
-
-    const payload = JSON.parse(body) as WebhookEvent
+    const payload = JSON.parse(result) as WebhookEvent
 
     const app = new App({
       appId: env.OCTOFLARE_APP_ID,
       privateKey: env.OCTOFLARE_PRIVATE_KEY_PKCS8
     })
 
-    const response = await attempt(
-      () => handler({ request, env, app, payload }),
-      (e) =>
-        new Response(JSON.stringify(e, null, 2), {
-          status: 500
-        })
-    )
+    let check_run_id = ''
 
-    return response
+    const installation = await makeInstallation({ payload, app }, (id) => {
+      check_run_id = id
+    })
+
+    try {
+      const response = await handler({
+        request,
+        env,
+        app,
+        payload,
+        installation
+      })
+      return response
+    } catch (e) {
+      const json = JSON.stringify(e, null, 2)
+
+      if (check_run_id) {
+        await installation?.kit.rest.checks.update({
+          check_run_id,
+          status: 'completed',
+          conclusion: 'failure',
+          output: {
+            title: 'Octoflare Error',
+            summary: e instanceof Error ? e.message : 'Unknown error'
+          }
+        })
+      }
+
+      await installation?.kit.rest.apps.revokeInstallationAccessToken()
+
+      console.error(e)
+
+      return new Response(json, {
+        status: 500
+      })
+    }
   }
 })
