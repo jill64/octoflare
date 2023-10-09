@@ -31,6 +31,10 @@
     "./octokit": {
       "types": "./dist/octokit/index.d.ts",
       "default": "./dist/octokit/index.js"
+    },
+    "./webhook": {
+      "types": "./dist/webhook/index.d.ts",
+      "default": "./dist/webhook/index.js"
     }
   },
   "repository": {

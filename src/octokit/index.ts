@@ -1,1 +1,1 @@
-export * from '@octokit/webhooks-types'
+export * from 'octokit'
