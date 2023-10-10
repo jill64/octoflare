@@ -1,5 +1,6 @@
 # Octoflare
 
+[![npm](https://img.shields.io/npm/v/octoflare)](https://npmjs.com/package/octoflare)
 [![CI](https://github.com/jill64/octoflare/actions/workflows/ci.yml/badge.svg)](https://github.com/jill64/octoflare/actions/workflows/ci.yml)
 
 A framework for building GitHub Apps with Cloudflare Worker
