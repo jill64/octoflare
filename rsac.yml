@@ -1,0 +1,5 @@
+branch-protection:
+  main:
+    required_status_checks:
+      contexts:
+        - build / build
