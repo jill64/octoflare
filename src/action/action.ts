@@ -25,7 +25,7 @@ export const action = async (
   const owner = core.getInput('owner', { required: true })
   const repo = core.getInput('repo', { required: true })
 
-  const finish = (async (conclusion, params) => {
+  const finish = (async (conclusion, params, revokeToken) => {
     if (check_run_id) {
       await octokit.rest.checks.update({
         owner,
@@ -37,8 +37,10 @@ export const action = async (
         ...params
       })
     }
-    await octokit.rest.apps.revokeInstallationAccessToken()
-  }) satisfies Finish
+    if (revokeToken) {
+      await octokit.rest.apps.revokeInstallationAccessToken()
+    }
+  }) as Finish
 
   try {
     await main({
