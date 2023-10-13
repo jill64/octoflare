@@ -11,5 +11,6 @@ export const build = (
     bundle: true,
     platform: 'node',
     target: 'node16',
-    outfile: dist
+    outfile: dist,
+    treeShaking: true
   })
