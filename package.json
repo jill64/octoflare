@@ -35,6 +35,10 @@
     "./webhook": {
       "types": "./dist/webhook/index.d.ts",
       "default": "./dist/webhook/index.js"
+    },
+    "./action": {
+      "types": "./dist/action/index.d.ts",
+      "default": "./dist/action/index.js"
     }
   },
   "repository": {
@@ -54,9 +58,12 @@
     "typescript": "5.2.2"
   },
   "dependencies": {
-    "@jill64/attempt": "1.0.12",
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0",
     "@cloudflare/workers-types": "4.20231010.0",
+    "@jill64/attempt": "1.0.12",
     "@octokit/webhooks-types": "7.3.1",
+    "esbuild": "^0.19.4",
     "octokit": "3.1.1"
   }
 }
