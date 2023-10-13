@@ -61,26 +61,26 @@ export const makeInstallation = async (
 
       onCreateCheck(check_run_id)
 
-      const completeCheckRun = ((params) =>
+      const completeCheckRun = ((complete_params) =>
         kit.rest.checks.update({
           check_run_id,
           owner: params.owner,
           repo: params.repo,
           status: 'completed',
-          ...params
+          ...complete_params
         })) satisfies CompleteCheckRun
 
-      const dispatchWorkflow = (async (params) => {
+      const dispatchWorkflow = (async (dispatch_params) => {
         const octokit = await getRepoInstallation(params)
 
         await octokit.rest.actions.createWorkflowDispatch({
-          ...params,
+          ...dispatch_params,
           inputs: {
             token,
             repo: params.repo,
             owner: params.owner,
             check_run_id,
-            ...params.inputs
+            ...dispatch_params.inputs
           }
         })
 
