@@ -30,23 +30,31 @@ export const makeInstallation = async (
     installation_id
   })
 
-  const createCheckRun = async (
-    params: Parameters<OctoflareInstallation['createCheckRun']>[0]
-  ) => {
-    const response = await kit.rest.checks.create({
-      status: 'in_progress',
-      ...params
-    })
-
-    onCreateCheck(response.data.id.toString())
-
-    return response
-  }
+  let check_run_id = ''
 
   return {
     id: installation_id,
     token,
     kit,
-    createCheckRun
+    createCheckRun: async (params) => {
+      const response = await kit.rest.checks.create({
+        status: 'in_progress',
+        ...params
+      })
+
+      check_run_id = response.data.id.toString()
+      onCreateCheck(check_run_id)
+
+      return response
+    },
+    dispatchWorkflow: (params) =>
+      kit.rest.actions.createWorkflowDispatch({
+        ...params,
+        inputs: {
+          ...params.inputs,
+          ...(check_run_id ? { check_run_id } : {}),
+          token
+        }
+      })
   }
 }
