@@ -50,3 +50,23 @@ Before using the private key provided by GitHub, you need to convert it to PKCS8
 ```sh
 openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in private-key.pem -out private-key-pkcs8.key
 ```
+
+## GitHub Action
+
+```js
+// action/src/index.js
+import { action } from 'octoflare'
+
+action(({ request, env, app, payload }) => {
+  // Application Code
+})
+```
+
+### Action Build
+
+```js
+// action/scripts/build.js
+import { build } from 'octoflare'
+
+build('action/src/index.ts', 'action/dist/index.js')
+```
