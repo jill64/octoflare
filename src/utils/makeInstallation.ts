@@ -72,7 +72,8 @@ export const makeInstallation = async (
 
       const dispatchWorkflow = (async (params) => {
         const octokit = await getRepoInstallation(params)
-        return octokit.rest.actions.createWorkflowDispatch({
+
+        await octokit.rest.actions.createWorkflowDispatch({
           ...params,
           inputs: {
             token,
@@ -82,6 +83,8 @@ export const makeInstallation = async (
             ...params.inputs
           }
         })
+
+        return octokit.rest.apps.revokeInstallationAccessToken
       }) satisfies DispatchWorkflow
 
       return {
