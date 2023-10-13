@@ -30,7 +30,7 @@ export const makeInstallation = async (
     installation_id
   })
 
-  let check_run_id = ''
+  let check_run_id: string | null = null
 
   return {
     id: installation_id,
