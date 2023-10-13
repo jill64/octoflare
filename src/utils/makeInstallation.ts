@@ -47,8 +47,17 @@ export const makeInstallation = async (
 
       return response
     },
-    dispatchWorkflow: (params) =>
-      kit.rest.actions.createWorkflowDispatch({
+    dispatchWorkflow: async (params) => {
+      const {
+        data: { id: installation_id }
+      } = await app.octokit.rest.apps.getRepoInstallation({
+        owner: params.owner,
+        repo: params.repo
+      })
+
+      const kit = await app.getInstallationOctokit(installation_id)
+
+      return kit.rest.actions.createWorkflowDispatch({
         ...params,
         inputs: {
           ...params.inputs,
@@ -56,5 +65,6 @@ export const makeInstallation = async (
           token
         }
       })
+    }
   }
 }
