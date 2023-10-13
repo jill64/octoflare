@@ -1,4 +1,5 @@
 import { WebhookEvent } from '@octokit/webhooks-types'
+import memoize from 'lodash/memoize.js'
 import { App } from 'octokit'
 import { OctoflareInstallation } from '../types/OctoflareInstallation.js'
 
@@ -19,7 +20,6 @@ export const makeInstallation = async (
   if (!payload.installation) {
     return null
   }
-
   const installation_id = payload.installation.id
 
   const kit = await app.getInstallationOctokit(installation_id)
@@ -30,41 +30,48 @@ export const makeInstallation = async (
     installation_id
   })
 
-  let check_run_id: string | null = null
+  const getRepoInstallation = memoize(
+    async ({ owner, repo }: { owner: string; repo: string }) => {
+      const {
+        data: { id: installation_id }
+      } = await app.octokit.rest.apps.getRepoInstallation({
+        owner,
+        repo
+      })
+
+      return await app.getInstallationOctokit(installation_id)
+    }
+  )
 
   return {
     id: installation_id,
     token,
     kit,
     createCheckRun: async (params) => {
-      const response = await kit.rest.checks.create({
-        status: 'in_progress',
-        ...params
+      const {
+        data: { id }
+      } = await kit.rest.checks.create({
+        ...params,
+        status: 'in_progress'
       })
 
-      check_run_id = response.data.id.toString()
+      const check_run_id = id.toString()
+
       onCreateCheck(check_run_id)
 
-      return response
-    },
-    dispatchWorkflow: async (params) => {
-      const {
-        data: { id: installation_id }
-      } = await app.octokit.rest.apps.getRepoInstallation({
-        owner: params.owner,
-        repo: params.repo
-      })
-
-      const kit = await app.getInstallationOctokit(installation_id)
-
-      return kit.rest.actions.createWorkflowDispatch({
-        ...params,
-        inputs: {
-          ...params.inputs,
-          ...(check_run_id ? { check_run_id } : {}),
-          token
-        }
-      })
+      return async (dispatch_params) => {
+        const octokit = await getRepoInstallation(dispatch_params)
+        return octokit.rest.actions.createWorkflowDispatch({
+          ...dispatch_params,
+          inputs: {
+            token,
+            repo: params.repo,
+            owner: params.owner,
+            check_run_id,
+            ...dispatch_params.inputs
+          }
+        })
+      }
     }
   }
 }
