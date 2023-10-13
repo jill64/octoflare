@@ -1,6 +1,8 @@
 import { WebhookEvent } from '@octokit/webhooks-types'
 import memoize from 'lodash/memoize.js'
 import { App } from 'octokit'
+import { CompleteCheckRun } from '../types/CompleteCheckRun.js'
+import { DispatchWorkflow } from '../types/DispatchWorkflow.js'
 import { OctoflareInstallation } from '../types/OctoflareInstallation.js'
 
 export const makeInstallation = async (
@@ -59,18 +61,32 @@ export const makeInstallation = async (
 
       onCreateCheck(check_run_id)
 
-      return async (dispatch_params) => {
-        const octokit = await getRepoInstallation(dispatch_params)
+      const completeCheckRun = ((params) =>
+        kit.rest.checks.update({
+          check_run_id,
+          owner: params.owner,
+          repo: params.repo,
+          status: 'completed',
+          ...params
+        })) satisfies CompleteCheckRun
+
+      const dispatchWorkflow = (async (params) => {
+        const octokit = await getRepoInstallation(params)
         return octokit.rest.actions.createWorkflowDispatch({
-          ...dispatch_params,
+          ...params,
           inputs: {
             token,
             repo: params.repo,
             owner: params.owner,
             check_run_id,
-            ...dispatch_params.inputs
+            ...params.inputs
           }
         })
+      }) satisfies DispatchWorkflow
+
+      return {
+        completeCheckRun,
+        dispatchWorkflow
       }
     }
   }
