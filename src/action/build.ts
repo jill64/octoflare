@@ -11,6 +11,5 @@ export const build = (
     bundle: true,
     platform: 'node',
     target: 'node16',
-    outfile: dist,
-    external: ['esbuild']
+    outfile: dist
   })
