@@ -1,5 +1,6 @@
 import core from '@actions/core'
 import github from '@actions/github'
+import { OctoflarePayload } from '../types/OctoflarePayload.js'
 import { ActionOctokit } from './index.js'
 import { Finish } from './types/Finish.js'
 
@@ -8,24 +9,21 @@ export const action = async (
     core: typeof core
     github: typeof github
     octokit: ActionOctokit
-    owner: string
-    repo: string
+    payload: OctoflarePayload
     finish: Finish
   }) => unknown
 ) => {
-  const token = core.getInput('token', { required: true })
-  const octokit = github.getOctokit(token)
+  const payloadStr = core.getInput('payload', { required: true })
 
-  const cid = core.getInput('check_run_id')
-  const check_run_id = cid ? parseInt(cid) : null
+  const payload = JSON.parse(payloadStr) as OctoflarePayload
+  const { token, check_run_id, owner, repo } = payload
+
+  const octokit = github.getOctokit(token)
 
   const { context } = github
   const details_url = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
 
-  const owner = core.getInput('owner', { required: true })
-  const repo = core.getInput('repo', { required: true })
-
-  const finish = (async (conclusion, params, skipRevokeToken) => {
+  const finish = (async (conclusion, params) => {
     if (check_run_id) {
       await octokit.rest.checks.update({
         owner,
@@ -37,9 +35,6 @@ export const action = async (
         ...params
       })
     }
-    if (!skipRevokeToken) {
-      await octokit.rest.apps.revokeInstallationAccessToken()
-    }
   }) as Finish
 
   try {
@@ -47,8 +42,7 @@ export const action = async (
       core,
       github,
       octokit,
-      owner,
-      repo,
+      payload,
       finish
     })
   } catch (e) {
