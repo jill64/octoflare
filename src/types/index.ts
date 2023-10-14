@@ -1,2 +1,5 @@
+export type { CompleteCheckRun } from './CompleteCheckRun.js'
+export type { DispatchWorkflow } from './DispatchWorkflow.js'
 export type { OctoflareEnv } from './OctoflareEnv.js'
 export type { OctoflareHandler } from './OctoflareHandler.js'
+export type { OctoflareInstallation } from './OctoflareInstallation.js'
