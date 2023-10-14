@@ -27,8 +27,8 @@ export const action = async (handler: ActionHandler) => {
         conclusion,
         output
       })
+      await octokit.rest.apps.revokeInstallationAccessToken()
     }
-    await octokit.rest.apps.revokeInstallationAccessToken()
   }
 
   try {
