@@ -43,9 +43,14 @@ export const octoflare = <Env extends Record<string, unknown>>(
           return result
         }
 
-        await completeCheckRun?.(result.conclusion, result.output)
+        await (typeof result === 'string'
+          ? completeCheckRun?.(result)
+          : completeCheckRun?.(result.conclusion, result.output))
 
-        return new Response(JSON.stringify(result, null, 2), {
+        const body =
+          typeof result === 'string' ? result : JSON.stringify(result, null, 2)
+
+        return new Response(body, {
           status: 200
         })
       } catch (e) {
