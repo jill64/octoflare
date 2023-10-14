@@ -22,8 +22,8 @@ export const makeInstallation = async (
   if (!payload.installation) {
     return null
   }
-  const installation_id = payload.installation.id
 
+  const installation_id = payload.installation.id
   const kit = await app.getInstallationOctokit(installation_id)
 
   const {
