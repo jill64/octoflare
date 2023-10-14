@@ -60,7 +60,7 @@ export const makeInstallation = async (
       }
     })
 
-    return octokit.rest.apps.revokeInstallationAccessToken
+    await octokit.rest.apps.revokeInstallationAccessToken()
   }) satisfies OctoflareInstallation['startWorkflow']
 
   const createCheckRun = (async (params) => {
@@ -73,15 +73,18 @@ export const makeInstallation = async (
 
     const check_run_id = id.toString()
 
-    const completeCheckRun = ((conclusion, complete_params) =>
-      kit.rest.checks.update({
+    const completeCheckRun = (async (conclusion, output) => {
+      await kit.rest.checks.update({
         check_run_id,
         owner: params.owner,
         repo: params.repo,
         status: 'completed',
         conclusion,
-        ...complete_params
-      })) satisfies CompleteCheckRun
+        output
+      })
+
+      await kit.rest.apps.revokeInstallationAccessToken()
+    }) satisfies CompleteCheckRun
 
     const dispatchWorkflow = ((dispatch_params) =>
       startWorkflow({
