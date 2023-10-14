@@ -4,6 +4,7 @@ import { App } from 'octokit'
 import { CompleteCheckRun } from '../types/CompleteCheckRun.js'
 import { DispatchWorkflow } from '../types/DispatchWorkflow.js'
 import { OctoflareInstallation } from '../types/OctoflareInstallation.js'
+import { OctoflarePayload } from '../types/OctoflarePayload.js'
 
 export const makeInstallation = async (
   {
@@ -45,53 +46,69 @@ export const makeInstallation = async (
     }
   )
 
+  const startWorkflow = (async (params) => {
+    const octokit = await getRepoInstallation(params)
+
+    await octokit.rest.actions.createWorkflowDispatch({
+      ...params,
+      inputs: {
+        ...params.inputs,
+        payload: JSON.stringify({
+          token,
+          ...params.inputs.payload
+        } satisfies OctoflarePayload)
+      }
+    })
+
+    return octokit.rest.apps.revokeInstallationAccessToken
+  }) satisfies OctoflareInstallation['startWorkflow']
+
+  const createCheckRun = (async (params) => {
+    const {
+      data: { id }
+    } = await kit.rest.checks.create({
+      ...params,
+      status: 'in_progress'
+    })
+
+    const check_run_id = id.toString()
+
+    const completeCheckRun = ((conclusion, complete_params) =>
+      kit.rest.checks.update({
+        check_run_id,
+        owner: params.owner,
+        repo: params.repo,
+        status: 'completed',
+        conclusion,
+        ...complete_params
+      })) satisfies CompleteCheckRun
+
+    const dispatchWorkflow = ((dispatch_params) =>
+      startWorkflow({
+        ...dispatch_params,
+        inputs: {
+          ...dispatch_params.inputs,
+          payload: {
+            repo: params.repo,
+            owner: params.owner,
+            check_run_id: id
+          }
+        }
+      })) satisfies DispatchWorkflow
+
+    onCreateCheck(completeCheckRun)
+
+    return {
+      completeCheckRun,
+      dispatchWorkflow
+    }
+  }) satisfies OctoflareInstallation['createCheckRun']
+
   return {
     id: installation_id,
     token,
     kit,
-    createCheckRun: async (params) => {
-      const {
-        data: { id }
-      } = await kit.rest.checks.create({
-        ...params,
-        status: 'in_progress'
-      })
-
-      const check_run_id = id.toString()
-
-      const completeCheckRun = ((conclusion, complete_params) =>
-        kit.rest.checks.update({
-          check_run_id,
-          owner: params.owner,
-          repo: params.repo,
-          status: 'completed',
-          conclusion,
-          ...complete_params
-        })) satisfies CompleteCheckRun
-
-      const dispatchWorkflow = (async (dispatch_params) => {
-        const octokit = await getRepoInstallation(dispatch_params)
-
-        await octokit.rest.actions.createWorkflowDispatch({
-          ...dispatch_params,
-          inputs: {
-            token,
-            repo: params.repo,
-            owner: params.owner,
-            check_run_id,
-            ...dispatch_params.inputs
-          }
-        })
-
-        return octokit.rest.apps.revokeInstallationAccessToken
-      }) satisfies DispatchWorkflow
-
-      onCreateCheck(completeCheckRun)
-
-      return {
-        completeCheckRun,
-        dispatchWorkflow
-      }
-    }
+    createCheckRun,
+    startWorkflow
   }
 }

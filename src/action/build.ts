@@ -12,5 +12,5 @@ export const build = (
     platform: 'node',
     target: 'node16',
     outfile: dist,
-    treeShaking: true
+    external: ['@actions/core', '@actions/github']
   })
