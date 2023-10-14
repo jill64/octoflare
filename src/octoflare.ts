@@ -31,22 +31,28 @@ export const octoflare = <Env extends Record<string, unknown>>(
       })
 
       try {
-        return await handler({
+        const result = await handler({
           request,
           env,
           app,
           payload,
           installation
         })
+
+        if (result instanceof Response) {
+          return result
+        }
+
+        await completeCheckRun?.(result.conclusion, result.output)
+
+        return new Response(JSON.stringify(result, null, 2), {
+          status: 200
+        })
       } catch (e) {
         await completeCheckRun?.('failure', {
-          output: {
-            title: 'Octoflare Error',
-            summary: e instanceof Error ? e.message : 'Unknown error'
-          }
+          title: 'Octoflare Error',
+          summary: e instanceof Error ? e.message : 'Unknown error'
         })
-
-        await installation?.kit.rest.apps.revokeInstallationAccessToken()
 
         throw e
       }

@@ -21,5 +21,5 @@ export type OctoflareInstallation = {
         payload: Omit<OctoflarePayload, 'token'>
       }
     }
-  ) => Promise<Octokit['rest']['apps']['revokeInstallationAccessToken']>
+  ) => Promise<void>
 }

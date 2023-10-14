@@ -1,9 +1,9 @@
 import core from '@actions/core'
 import github from '@actions/github'
+import { ChecksOutput } from '../types/ChecksOutput.js'
 import { Conclusion } from '../types/Conclusion.js'
 import { OctoflarePayload } from '../types/OctoflarePayload.js'
 import { ActionHandler } from './types/ActionHandler.js'
-import { ChecksOutput } from './types/ChecksOutput.js'
 
 export const action = async (handler: ActionHandler) => {
   const payloadStr = core.getInput('payload', { required: true })
