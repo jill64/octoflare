@@ -3,10 +3,6 @@ import { Octokit } from 'octokit'
 type ChecksUpdate = Octokit['rest']['checks']['update']
 
 export type CompleteCheckRun = (
-  param: Omit<
-    NonNullable<Parameters<ChecksUpdate>[0]>,
-    'check_run_id' | 'status' | 'owner' | 'repo'
-  > & {
-    conclusion: 'success' | 'failure' | 'skipped'
-  }
+  conclusion: 'success' | 'failure' | 'skipped',
+  param?: Partial<NonNullable<Parameters<ChecksUpdate>[0]>>
 ) => ReturnType<ChecksUpdate>

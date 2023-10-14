@@ -1,5 +1,6 @@
 import { WebhookEvent } from '@octokit/webhooks-types'
 import { App } from 'octokit'
+import { CompleteCheckRun } from './types/CompleteCheckRun.js'
 import { OctoflareEnv } from './types/OctoflareEnv.js'
 import { OctoflareHandler } from './types/OctoflareHandler.js'
 import { makeInstallation } from './utils/makeInstallation.js'
@@ -23,10 +24,10 @@ export const octoflare = <Env extends Record<string, unknown>>(
         privateKey: env.OCTOFLARE_PRIVATE_KEY_PKCS8
       })
 
-      let check_run_id = ''
+      let completeCheckRun: CompleteCheckRun | undefined
 
-      const installation = await makeInstallation({ payload, app }, (id) => {
-        check_run_id = id
+      const installation = await makeInstallation({ payload, app }, (fn) => {
+        completeCheckRun = fn
       })
 
       try {
@@ -38,17 +39,12 @@ export const octoflare = <Env extends Record<string, unknown>>(
           installation
         })
       } catch (e) {
-        if (check_run_id) {
-          await installation?.kit.rest.checks.update({
-            check_run_id,
-            status: 'completed',
-            conclusion: 'failure',
-            output: {
-              title: 'Octoflare Error',
-              summary: e instanceof Error ? e.message : 'Unknown error'
-            }
-          })
-        }
+        await completeCheckRun?.('failure', {
+          output: {
+            title: 'Octoflare Error',
+            summary: e instanceof Error ? e.message : 'Unknown error'
+          }
+        })
 
         await installation?.kit.rest.apps.revokeInstallationAccessToken()
 
