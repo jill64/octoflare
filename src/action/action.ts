@@ -1,18 +1,11 @@
 import core from '@actions/core'
 import github from '@actions/github'
+import { Conclusion } from '../types/Conclusion.js'
 import { OctoflarePayload } from '../types/OctoflarePayload.js'
-import { ActionOctokit } from './index.js'
-import { Finish } from './types/Finish.js'
+import { ActionHandler } from './types/ActionHandler.js'
+import { ChecksOutput } from './types/ChecksOutput.js'
 
-export const action = async (
-  main: (context: {
-    core: typeof core
-    github: typeof github
-    octokit: ActionOctokit
-    payload: OctoflarePayload
-    finish: Finish
-  }) => unknown
-) => {
+export const action = async (handler: ActionHandler) => {
   const payloadStr = core.getInput('payload', { required: true })
 
   const payload = JSON.parse(payloadStr) as OctoflarePayload
@@ -23,7 +16,7 @@ export const action = async (
   const { context } = github
   const details_url = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
 
-  const finish = (async (conclusion, params) => {
+  const close = async (conclusion: Conclusion, output?: ChecksOutput) => {
     if (check_run_id) {
       await octokit.rest.checks.update({
         owner,
@@ -32,25 +25,31 @@ export const action = async (
         details_url,
         status: 'completed',
         conclusion,
-        ...params
+        output
       })
     }
-  }) as Finish
+    await octokit.rest.apps.revokeInstallationAccessToken()
+  }
 
   try {
-    await main({
+    const result = await handler({
       core,
       github,
       octokit,
-      payload,
-      finish
+      payload
     })
+
+    if (result) {
+      return await (typeof result === 'string'
+        ? close(result)
+        : close(result.conclusion, result.output))
+    }
+
+    await close('success')
   } catch (e) {
-    await finish('failure', {
-      output: {
-        title: 'Octoflare Action Error',
-        summary: e instanceof Error ? e.message : 'Unknown error'
-      }
+    await close('failure', {
+      title: 'Octoflare Action Error',
+      summary: e instanceof Error ? e.message : 'Unknown error'
     })
 
     throw e
