@@ -1,7 +1,0 @@
-name: CI
-
-on: push
-
-jobs:
-  build:
-    uses: jill64/workflows/.github/workflows/build.yml@main
