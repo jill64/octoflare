@@ -11,6 +11,5 @@ export const build = (
     bundle: true,
     platform: 'node',
     target: 'node16',
-    outfile: dist,
-    external: ['@actions/core', '@actions/github']
+    outfile: dist
   })
