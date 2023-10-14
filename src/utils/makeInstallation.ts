@@ -70,7 +70,7 @@ export const makeInstallation = async (
         })) satisfies CompleteCheckRun
 
       const dispatchWorkflow = (async (dispatch_params) => {
-        const octokit = await getRepoInstallation(params)
+        const octokit = await getRepoInstallation(dispatch_params)
 
         await octokit.rest.actions.createWorkflowDispatch({
           ...dispatch_params,
