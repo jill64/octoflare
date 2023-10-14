@@ -9,54 +9,53 @@ export const octoflare = <Env extends Record<string, unknown>>(
   handler: OctoflareHandler<Env & OctoflareEnv>
 ) => ({
   async fetch(request: Request, env: Env & OctoflareEnv): Promise<Response> {
-    const result = await verify({ request, env })
-
-    if (result instanceof Response) {
-      return result
-    }
-
-    const payload = JSON.parse(result) as WebhookEvent
-
-    const app = new App({
-      appId: env.OCTOFLARE_APP_ID,
-      privateKey: env.OCTOFLARE_PRIVATE_KEY_PKCS8
-    })
-
-    let check_run_id = ''
-
-    const installation = await makeInstallation({ payload, app }, (id) => {
-      check_run_id = id
-    })
-
     try {
-      const response = await handler({
-        request,
-        env,
-        app,
-        payload,
-        installation
-      })
-      return response
-    } catch (e) {
-      const json = JSON.stringify(e, null, 2)
+      const result = await verify({ request, env })
 
-      if (check_run_id) {
-        await installation?.kit.rest.checks.update({
-          check_run_id,
-          status: 'completed',
-          conclusion: 'failure',
-          output: {
-            title: 'Octoflare Error',
-            summary: e instanceof Error ? e.message : 'Unknown error'
-          }
-        })
+      if (result instanceof Response) {
+        return result
       }
 
-      await installation?.kit.rest.apps.revokeInstallationAccessToken()
+      const payload = JSON.parse(result) as WebhookEvent
 
-      console.error(e)
+      const app = new App({
+        appId: env.OCTOFLARE_APP_ID,
+        privateKey: env.OCTOFLARE_PRIVATE_KEY_PKCS8
+      })
 
-      return new Response(json, {
+      let check_run_id = ''
+
+      const installation = await makeInstallation({ payload, app }, (id) => {
+        check_run_id = id
+      })
+
+      try {
+        return await handler({
+          request,
+          env,
+          app,
+          payload,
+          installation
+        })
+      } catch (e) {
+        if (check_run_id) {
+          await installation?.kit.rest.checks.update({
+            check_run_id,
+            status: 'completed',
+            conclusion: 'failure',
+            output: {
+              title: 'Octoflare Error',
+              summary: e instanceof Error ? e.message : 'Unknown error'
+            }
+          })
+        }
+
+        await installation?.kit.rest.apps.revokeInstallationAccessToken()
+
+        throw e
+      }
+    } catch (e) {
+      return new Response(JSON.stringify(e, null, 2), {
         status: 500
       })
     }
