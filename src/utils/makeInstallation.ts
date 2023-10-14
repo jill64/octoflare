@@ -13,7 +13,7 @@ export const makeInstallation = async (
     payload: WebhookEvent
     app: App
   },
-  onCreateCheck: (check_run_id: string) => unknown
+  onCreateCheck: (completeCheckRun: CompleteCheckRun) => unknown
 ): Promise<OctoflareInstallation | null> => {
   if (!('installation' in payload)) {
     return null
@@ -36,7 +36,7 @@ export const makeInstallation = async (
     async ({ owner, repo }: { owner: string; repo: string }) => {
       const {
         data: { id: installation_id }
-      } = await app.octokit.rest.apps.getRepoInstallation({
+      } = await kit.rest.apps.getRepoInstallation({
         owner,
         repo
       })
@@ -59,14 +59,13 @@ export const makeInstallation = async (
 
       const check_run_id = id.toString()
 
-      onCreateCheck(check_run_id)
-
-      const completeCheckRun = ((complete_params) =>
+      const completeCheckRun = ((conclusion, complete_params) =>
         kit.rest.checks.update({
           check_run_id,
           owner: params.owner,
           repo: params.repo,
           status: 'completed',
+          conclusion,
           ...complete_params
         })) satisfies CompleteCheckRun
 
@@ -86,6 +85,8 @@ export const makeInstallation = async (
 
         return octokit.rest.apps.revokeInstallationAccessToken
       }) satisfies DispatchWorkflow
+
+      onCreateCheck(completeCheckRun)
 
       return {
         completeCheckRun,
