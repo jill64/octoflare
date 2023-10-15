@@ -1,3 +1,5 @@
+export type { ChecksOutput } from './ChecksOutput.js'
+export type { CloseCheckParam } from './CloseCheckParam.js'
 export type { CompleteCheckRun } from './CompleteCheckRun.js'
 export type { DispatchWorkflow } from './DispatchWorkflow.js'
 export type { OctoflareEnv } from './OctoflareEnv.js'
