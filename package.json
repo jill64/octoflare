@@ -39,6 +39,14 @@
     "./action": {
       "types": "./dist/action/index.d.ts",
       "default": "./dist/action/index.js"
+    },
+    "./action/core": {
+      "types": "./dist/action/core/index.d.ts",
+      "default": "./dist/action/core/index.js"
+    },
+    "./action/github": {
+      "types": "./dist/action/github/index.d.ts",
+      "default": "./dist/action/github/index.js"
     }
   },
   "repository": {
