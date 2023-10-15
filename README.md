@@ -112,7 +112,7 @@ npm i -D esbuild
 // action/scripts/build.js
 import { build } from 'esbuild'
 
-esbuild({
+build({
   entryPoints: ['action/src/index.ts'],
   bundle: true,
   platform: 'node',
