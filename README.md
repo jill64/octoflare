@@ -88,9 +88,19 @@ action(({ request, env, app, payload }) => {
 
 ### Action Build
 
+```sh
+npm i -D esbuild
+```
+
 ```js
 // action/scripts/build.js
-import { build } from 'octoflare'
+import { build } from 'esbuild'
 
-build('action/src/index.ts', 'action/dist/index.js')
+esbuild({
+  entryPoints: ['action/src/index.ts'],
+  bundle: true,
+  platform: 'node',
+  target: 'node16',
+  outfile: 'action/dist/index.cjs'
+})
 ```
