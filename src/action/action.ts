@@ -7,8 +7,8 @@ import { ActionHandler } from './types/ActionHandler.js'
 
 export const action = async (handler: ActionHandler) => {
   const payloadStr = core.getInput('payload', { required: true })
-
   const payload = JSON.parse(payloadStr) as OctoflarePayload
+
   const { token, check_run_id, owner, repo } = payload
 
   const octokit = github.getOctokit(token)
@@ -33,8 +33,6 @@ export const action = async (handler: ActionHandler) => {
 
   try {
     const result = await handler({
-      core,
-      github,
       octokit,
       payload
     })
