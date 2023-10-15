@@ -55,7 +55,7 @@ export const octoflare = <Env extends Record<string, unknown>>(
         })
       } catch (e) {
         await completeCheckRun?.('failure', {
-          title: 'Octoflare Error',
+          title: 'Octoflare Worker Error',
           summary: e instanceof Error ? e.message : 'Unknown error'
         })
 
