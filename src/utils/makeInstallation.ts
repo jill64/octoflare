@@ -1,10 +1,10 @@
 import { WebhookEvent } from '@octokit/webhooks-types'
-import memoize from 'lodash/memoize.js'
 import { App } from 'octokit'
 import { CompleteCheckRun } from '../types/CompleteCheckRun.js'
 import { DispatchWorkflow } from '../types/DispatchWorkflow.js'
 import { OctoflareInstallation } from '../types/OctoflareInstallation.js'
 import { OctoflarePayload } from '../types/OctoflarePayload.js'
+import { memoize } from './memoize.js'
 
 export const makeInstallation = async (
   {
