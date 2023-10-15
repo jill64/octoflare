@@ -62,17 +62,16 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "6.7.5",
     "@typescript-eslint/parser": "6.7.5",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "@types/node": "20.8.6",
+    "@types/lodash": "4.14.199"
   },
   "dependencies": {
-    "@types/node": "20.8.6",
-    "@types/lodash": "4.14.199",
-    "lodash": "4.17.21",
     "@actions/core": "1.10.1",
     "@actions/github": "6.0.0",
     "@cloudflare/workers-types": "4.20231010.0",
     "@octokit/webhooks-types": "7.3.1",
-    "esbuild": "0.19.4",
-    "octokit": "3.1.1"
+    "octokit": "3.1.1",
+    "lodash": "4.17.21"
   }
 }
