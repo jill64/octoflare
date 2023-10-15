@@ -66,7 +66,7 @@ Before using the private key provided by GitHub, you need to convert it to PKCS8
 openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in private-key.pem -out private-key-pkcs8.key
 ```
 
-## GitHub Action
+## GitHub Action Example
 
 ```js
 // action/src/index.js
@@ -84,6 +84,22 @@ action(({ request, env, app, payload }) => {
     }
   }
 })
+```
+
+```yml
+# action.yml
+name: YOUR_ACTION_NAME
+description: APPLICATION_DESCRIPTION
+
+inputs:
+  payload:
+    description: Octoflare Payload
+    required: true
+  # ... any inputs
+
+runs:
+  using: node16
+  main: action/dist/index.cjs
 ```
 
 ### Action Build
