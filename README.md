@@ -66,6 +66,8 @@ Before using the private key provided by GitHub, you need to convert it to PKCS8
 openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in private-key.pem -out private-key-pkcs8.key
 ```
 
+or Using [Web Tool](https://decoder.link/rsa_converter)
+
 ## GitHub Action Example
 
 ```js
