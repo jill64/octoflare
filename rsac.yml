@@ -1,0 +1,6 @@
+branch-protection:
+  main:
+    required_status_checks:
+      checks:
+        - coverage / coverage
+        
