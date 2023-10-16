@@ -25,28 +25,28 @@
       "default": "./dist/index.js"
     },
     "./workers": {
-      "types": "./dist/workers/index.d.ts",
-      "default": "./dist/workers/index.js"
+      "types": "./dist/re-exports/workers.d.ts",
+      "default": "./dist/re-exports/workers.js"
     },
     "./octokit": {
-      "types": "./dist/octokit/index.d.ts",
-      "default": "./dist/octokit/index.js"
+      "types": "./dist/re-exports/octokit.d.ts",
+      "default": "./dist/re-exports/octokit.js"
     },
     "./webhook": {
-      "types": "./dist/webhook/index.d.ts",
-      "default": "./dist/webhook/index.js"
+      "types": "./dist/re-exports/webhook.d.ts",
+      "default": "./dist/re-exports/webhook.js"
     },
     "./action": {
       "types": "./dist/action/index.d.ts",
       "default": "./dist/action/index.js"
     },
     "./action/core": {
-      "types": "./dist/action/core/index.d.ts",
-      "default": "./dist/action/core/index.js"
+      "types": "./dist/re-exports/actions/core.d.ts",
+      "default": "./dist/re-exports/actions/core.js"
     },
     "./action/github": {
-      "types": "./dist/action/github/index.d.ts",
-      "default": "./dist/action/github/index.js"
+      "types": "./dist/re-exports/actions/github.d.ts",
+      "default": "./dist/re-exports/actions/github.js"
     }
   },
   "repository": {
