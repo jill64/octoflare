@@ -57,7 +57,7 @@
     "build": "tsc && npx publint",
     "prepack": "npm run build",
     "test": "vitest run --coverage",
-    "lint": "npx prettier --check . && npx eslint && tsc",
+    "lint": "npx prettier --check . && npx eslint && tsc && npx depcheck",
     "format": "npx prettier --write ."
   },
   "devDependencies": {
