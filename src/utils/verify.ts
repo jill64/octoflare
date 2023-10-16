@@ -1,5 +1,6 @@
 import crypto from 'node:crypto'
 import { OctoflareEnv } from '../index.js'
+import { timingSafeEqual } from './timingSafeEqual.js'
 
 export const verify = async ({
   request,
@@ -32,7 +33,15 @@ export const verify = async ({
     .update(body)
     .digest('hex')
 
-  if (`sha256=${signature}` !== headers.get('X-Hub-Signature-256')) {
+  const headerSignature = headers.get('X-Hub-Signature-256')
+
+  if (!headerSignature) {
+    return new Response(null, {
+      status: 401
+    })
+  }
+
+  if (!timingSafeEqual(`sha256=${signature}`, headerSignature)) {
     return new Response(null, {
       status: 403
     })
