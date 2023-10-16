@@ -1,7 +1,0 @@
-name: CI
-
-on: push
-
-jobs:
-  coverage:
-    uses: jill64/workflows/.github/workflows/coverage.yml@main
