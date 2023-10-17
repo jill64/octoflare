@@ -3,6 +3,7 @@ import github from '@actions/github'
 import { ChecksOutput } from '../types/ChecksOutput.js'
 import { Conclusion } from '../types/Conclusion.js'
 import { OctoflarePayload } from '../types/OctoflarePayload.js'
+import { errorLogging } from '../utils/errorLogging.js'
 import { ActionHandler } from './types/ActionHandler.js'
 
 export const action = async (handler: ActionHandler) => {
@@ -27,6 +28,7 @@ export const action = async (handler: ActionHandler) => {
         conclusion,
         output
       })
+
       await octokit.rest.apps.revokeInstallationAccessToken()
     }
   }
@@ -45,6 +47,15 @@ export const action = async (handler: ActionHandler) => {
 
     await close('success')
   } catch (e) {
+    if (e instanceof Error) {
+      await errorLogging({
+        octokit,
+        ...context.repo,
+        error: e,
+        info: `${owner}/${repo}`
+      })
+    }
+
     await close('failure', {
       title: 'Octoflare Action Error',
       summary: e instanceof Error ? e.message : 'Unknown error'

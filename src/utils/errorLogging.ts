@@ -1,4 +1,4 @@
-import { Octokit } from 'octokit'
+import { ActionOctokit } from '../action/index.js'
 
 export const errorLogging = async ({
   octokit,
@@ -7,7 +7,7 @@ export const errorLogging = async ({
   error,
   info
 }: {
-  octokit: Octokit
+  octokit: ActionOctokit
   repo: string
   owner: string
   error: Error
