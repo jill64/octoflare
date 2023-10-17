@@ -55,6 +55,8 @@ The following must be set as environment variables for Cloudflare Workers
 | OCTOFLARE_APP_ID            | GitHub App ID                                    |
 | OCTOFLARE_PRIVATE_KEY_PKCS8 | GitHub App private key converted to PKCS8 format |
 | OCTOFLARE_WEBHOOK_SECRET    | GitHub App Webhook Secret                        |
+| OCTOFLARE_APP_REPO          | GitHub App Repository Name                       |
+| OCTOFLARE_APP_OWNER         | GitHub App Repository Owner Name                 |
 
 [Handler Type Definition](./src/types/OctoflareHandler.ts)
 
