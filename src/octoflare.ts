@@ -3,6 +3,7 @@ import { App } from 'octokit'
 import { CompleteCheckRun } from './types/CompleteCheckRun.js'
 import { OctoflareEnv } from './types/OctoflareEnv.js'
 import { OctoflareHandler } from './types/OctoflareHandler.js'
+import { errorLogging } from './utils/errorLogging.js'
 import { makeInstallation } from './utils/makeInstallation.js'
 import { verify } from './utils/verify.js'
 
@@ -25,10 +26,20 @@ export const octoflare = <Env extends Record<string, unknown>>(
       })
 
       let completeCheckRun: CompleteCheckRun | undefined
+      let checkTarget:
+        | {
+            repo: string
+            owner: string
+          }
+        | undefined
 
-      const installation = await makeInstallation({ payload, app }, (fn) => {
-        completeCheckRun = fn
-      })
+      const { installation, apps } = await makeInstallation(
+        { payload, app },
+        ({ completeCheckRun: fn, target }) => {
+          completeCheckRun = fn
+          checkTarget = target
+        }
+      )
 
       try {
         const result = await handler({
@@ -54,6 +65,20 @@ export const octoflare = <Env extends Record<string, unknown>>(
           status: 200
         })
       } catch (e) {
+        if (apps && e instanceof Error) {
+          const apps_kit = await apps.kit
+
+          await errorLogging({
+            octokit: apps_kit,
+            repo: apps.repo,
+            owner: apps.owner,
+            error: e,
+            info: checkTarget ? `${checkTarget.owner}/${checkTarget.repo}` : ''
+          })
+
+          await apps_kit.rest.apps.revokeInstallationAccessToken()
+        }
+
         await completeCheckRun?.('failure', {
           title: 'Octoflare Worker Error',
           summary: e instanceof Error ? e.message : 'Unknown error'

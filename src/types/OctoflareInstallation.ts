@@ -2,6 +2,7 @@ import { Octokit } from 'octokit'
 import { CompleteCheckRun } from './CompleteCheckRun.js'
 import { DispatchWorkflow } from './DispatchWorkflow.js'
 import { OctoflarePayload } from './OctoflarePayload.js'
+import { WorkflowInputs } from './WorkflowInputs.js'
 
 export type OctoflareInstallation = {
   id: number
@@ -14,12 +15,8 @@ export type OctoflareInstallation = {
     dispatchWorkflow: DispatchWorkflow
   }>
   startWorkflow: (
-    params: NonNullable<
-      Parameters<Octokit['rest']['actions']['createWorkflowDispatch']>[0]
-    > & {
-      inputs: {
-        payload: Omit<OctoflarePayload, 'token'>
-      }
+    inputs: WorkflowInputs & {
+      payload: Omit<OctoflarePayload, 'token'>
     }
   ) => Promise<void>
 }
