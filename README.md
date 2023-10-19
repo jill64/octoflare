@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/octoflare)](https://npmjs.com/package/octoflare)
 
-A framework for building GitHub Apps with Cloudflare Worker
+🌤️ A framework for building GitHub Apps with Cloudflare Worker
 
 ![workflow](./docs/workflow.png)
 
