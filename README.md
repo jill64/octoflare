@@ -1,6 +1,8 @@
 # Octoflare
 
 [![npm](https://img.shields.io/npm/v/octoflare)](https://npmjs.com/package/octoflare)
+[![NPM](https://img.shields.io/npm/l/octoflare)](https://npmjs.com/package/octoflare)
+[![codecov](https://codecov.io/gh/jill64/octoflare/graph/badge.svg?token=YdW8cyFzVc)](https://codecov.io/gh/jill64/octoflare)
 
 🌤️ A framework for building GitHub Apps with Cloudflare Worker
 
