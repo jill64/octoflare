@@ -10,9 +10,10 @@ export const action = async (handler: ActionHandler) => {
   const payloadStr = core.getInput('payload', { required: true })
   const payload = JSON.parse(payloadStr) as OctoflarePayload
 
-  const { token, check_run_id, owner, repo } = payload
+  const { token, app_token, check_run_id, owner, repo } = payload
 
   const octokit = github.getOctokit(token)
+  const app_kit = github.getOctokit(app_token)
 
   const { context } = github
   const details_url = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
@@ -29,7 +30,10 @@ export const action = async (handler: ActionHandler) => {
         output
       })
 
-      await octokit.rest.apps.revokeInstallationAccessToken()
+      await Promise.all([
+        octokit.rest.apps.revokeInstallationAccessToken(),
+        app_kit.rest.apps.revokeInstallationAccessToken()
+      ])
     }
   }
 
@@ -49,7 +53,7 @@ export const action = async (handler: ActionHandler) => {
   } catch (e) {
     if (e instanceof Error) {
       await errorLogging({
-        octokit,
+        octokit: app_kit,
         ...context.repo,
         error: e,
         info: `${owner}/${repo}`

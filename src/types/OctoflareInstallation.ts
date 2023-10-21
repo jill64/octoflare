@@ -5,9 +5,7 @@ import { OctoflarePayload } from './OctoflarePayload.js'
 import { WorkflowInputs } from './WorkflowInputs.js'
 
 export type OctoflareInstallation = {
-  id: number
   kit: Octokit
-  token: string
   createCheckRun: (
     params: NonNullable<Parameters<Octokit['rest']['checks']['create']>[0]>
   ) => Promise<{
@@ -16,7 +14,7 @@ export type OctoflareInstallation = {
   }>
   startWorkflow: (
     inputs: WorkflowInputs & {
-      payload: Omit<OctoflarePayload, 'token'>
+      payload: Omit<OctoflarePayload, 'token' | 'app_token'>
     }
   ) => Promise<void>
 }
