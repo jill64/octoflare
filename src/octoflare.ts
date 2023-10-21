@@ -33,7 +33,7 @@ export const octoflare = <Env extends Record<string, unknown>>(
           }
         | undefined
 
-      const installation = await makeInstallation(
+      const { installation, app_kit } = await makeInstallation(
         { payload, app, env },
         ({ completeCheckRun: fn, target }) => {
           completeCheckRun = fn
@@ -65,9 +65,9 @@ export const octoflare = <Env extends Record<string, unknown>>(
           status: 200
         })
       } catch (e) {
-        if (e instanceof Error) {
+        if (app_kit && e instanceof Error) {
           await errorLogging({
-            octokit: app.octokit,
+            octokit: app_kit,
             owner: env.OCTOFLARE_APP_OWNER,
             repo: env.OCTOFLARE_APP_REPO,
             error: e,
