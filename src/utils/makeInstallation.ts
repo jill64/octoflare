@@ -1,5 +1,5 @@
 import { WebhookEvent } from '@octokit/webhooks-types'
-import { App, Octokit } from 'octokit'
+import { App } from 'octokit'
 import { OctoflareEnv } from '../index.js'
 import { CompleteCheckRun } from '../types/CompleteCheckRun.js'
 import { DispatchWorkflow } from '../types/DispatchWorkflow.js'
@@ -23,48 +23,36 @@ export const makeInstallation = async (
       repo: string
     }
   }) => unknown
-): Promise<{
-  installation: OctoflareInstallation | null
-  app_kit: Octokit | null
-}> => {
+): Promise<OctoflareInstallation | null> => {
   if (!('installation' in payload)) {
-    return {
-      installation: null,
-      app_kit: null
-    }
+    return null
   }
 
   const { installation } = payload
 
   if (!installation) {
-    return {
-      installation: null,
-      app_kit: null
-    }
+    return null
   }
 
   const installation_id = installation.id
-
   const kit = await app.getInstallationOctokit(installation_id)
-
-  const {
-    data: { token }
-  } = await kit.rest.apps.createInstallationAccessToken({
-    installation_id
-  })
 
   const owner = env.OCTOFLARE_APP_OWNER
   const repo = env.OCTOFLARE_APP_REPO
 
-  const app_kit = await app.octokit.rest.apps
-    .getRepoInstallation({
-      owner,
-      repo
-    })
-    .then(({ data: { id } }) => app.getInstallationOctokit(id))
-
   const startWorkflow = (async (inputs) => {
-    await app_kit.rest.actions.createWorkflowDispatch({
+    const [token, app_token] = await Promise.all([
+      kit.rest.apps
+        .createInstallationAccessToken({
+          installation_id
+        })
+        .then(({ data: { token } }) => token),
+      app.octokit.rest.apps
+        .createInstallationAccessToken()
+        .then(({ data: { token } }) => token)
+    ])
+
+    await app.octokit.rest.actions.createWorkflowDispatch({
       repo,
       owner,
       workflow_id: `${repo}.yml`,
@@ -73,12 +61,11 @@ export const makeInstallation = async (
         ...inputs,
         payload: JSON.stringify({
           token,
+          app_token,
           ...inputs.payload
         } satisfies OctoflarePayload)
       }
     })
-
-    await app_kit.rest.apps.revokeInstallationAccessToken()
   }) satisfies OctoflareInstallation['startWorkflow']
 
   const createCheckRun = (async (params) => {
@@ -101,7 +88,10 @@ export const makeInstallation = async (
         output
       })
 
-      await kit.rest.apps.revokeInstallationAccessToken()
+      await Promise.all([
+        kit.rest.apps.revokeInstallationAccessToken(),
+        app.octokit.rest.apps.revokeInstallationAccessToken()
+      ])
     }) satisfies CompleteCheckRun
 
     const dispatchWorkflow = ((inputs) =>
@@ -129,13 +119,8 @@ export const makeInstallation = async (
   }) satisfies OctoflareInstallation['createCheckRun']
 
   return {
-    installation: {
-      id: installation_id,
-      token,
-      kit,
-      createCheckRun,
-      startWorkflow
-    },
-    app_kit
+    kit,
+    createCheckRun,
+    startWorkflow
   }
 }

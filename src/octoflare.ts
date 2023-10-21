@@ -33,7 +33,7 @@ export const octoflare = <Env extends Record<string, unknown>>(
           }
         | undefined
 
-      const { installation, app_kit } = await makeInstallation(
+      const installation = await makeInstallation(
         { payload, app, env },
         ({ completeCheckRun: fn, target }) => {
           completeCheckRun = fn
@@ -65,16 +65,14 @@ export const octoflare = <Env extends Record<string, unknown>>(
           status: 200
         })
       } catch (e) {
-        if (app_kit && e instanceof Error) {
+        if (e instanceof Error) {
           await errorLogging({
-            octokit: app_kit,
+            octokit: app.octokit,
             owner: env.OCTOFLARE_APP_OWNER,
             repo: env.OCTOFLARE_APP_REPO,
             error: e,
             info: checkTarget ? `${checkTarget.owner}/${checkTarget.repo}` : ''
           })
-
-          await app_kit.rest.apps.revokeInstallationAccessToken()
         }
 
         await completeCheckRun?.('failure', {
