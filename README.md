@@ -6,6 +6,8 @@
 
 🌤️ A framework for building GitHub Apps with Cloudflare Worker
 
+[Example Apps](https://github.com/jill64?tab=repositories&q=github-app&type=&language=&sort=stargazers)
+
 ![workflow](./docs/workflow.png)
 
 ## Start New Project with CLI
