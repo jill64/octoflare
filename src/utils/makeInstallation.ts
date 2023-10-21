@@ -48,7 +48,16 @@ export const makeInstallation = async (
         })
         .then(({ data: { token } }) => token),
       app.octokit.rest.apps
-        .createInstallationAccessToken()
+        .getRepoInstallation({
+          owner: env.OCTOFLARE_APP_OWNER,
+          repo: env.OCTOFLARE_APP_REPO
+        })
+        .then(({ data: { id } }) => id)
+        .then((installation_id) =>
+          app.octokit.rest.apps.createInstallationAccessToken({
+            installation_id
+          })
+        )
         .then(({ data: { token } }) => token)
     ])
 
