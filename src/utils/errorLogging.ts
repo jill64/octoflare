@@ -25,7 +25,7 @@ export const errorLogging = async ({
       owner,
       repo,
       per_page: 100,
-      state: 'all',
+      state: 'open',
       labels: 'octoflare-error'
     })
 
