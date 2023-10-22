@@ -58,7 +58,7 @@ export const action = async (handler: ActionHandler) => {
         error: e,
         info: `
 Target Repo: [${owner}/${repo}](https://github.com/${owner}/${repo})  
-Course on Action  
+Cause on Action  
 [Workflow Detail](${details_url})
 `
       })
