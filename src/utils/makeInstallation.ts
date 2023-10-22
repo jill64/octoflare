@@ -56,6 +56,7 @@ export const makeInstallation = async (
     owner,
     repo
   })
+  
   const app_kit = await app.getInstallationOctokit(app_installation_id)
 
   const startWorkflow = (async (inputs) => {
@@ -67,7 +68,7 @@ export const makeInstallation = async (
         .then(({ data: { token } }) => token),
       app_kit.rest.apps
         .createInstallationAccessToken({
-          installation_id
+          installation_id: app_installation_id
         })
         .then(({ data: { token } }) => token)
     ])
