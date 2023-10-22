@@ -56,7 +56,7 @@ export const makeInstallation = async (
     owner,
     repo
   })
-  
+
   const app_kit = await app.getInstallationOctokit(app_installation_id)
 
   const startWorkflow = (async (inputs) => {
