@@ -66,19 +66,20 @@ export const octoflare = <Env extends Record<string, unknown>>(
         })
       } catch (e) {
         if (app_kit && e instanceof Error) {
-          const repo_fullname = `${checkTarget.owner}/${checkTarget.repo}`
+          const repo_fullname = checkTarget ? `${checkTarget.owner}/${checkTarget.repo}` : '';
+          
           await errorLogging({
             octokit: app_kit,
             owner: env.OCTOFLARE_APP_OWNER,
             repo: env.OCTOFLARE_APP_REPO,
             error: e,
-            info: checkTarget
+            info: repo_fullname
               ? `
 Target Repo: [${repo_fullname}](https://github.com/${repo_fullname})  
 Cause in Worker
 `
-              : 'Cause in Worker'
-          })
+              : "Cause in Worker",
+          });
         }
 
         await completeCheckRun?.('failure', {
