@@ -57,8 +57,9 @@ export const action = async (handler: ActionHandler) => {
         ...context.repo,
         error: e,
         info: `
-${owner}/${repo} in Action  
-[Workflow Detail](${details_url})  
+Target Repo: [${owner}/${repo}](https://github.com/${owner}/${repo})  
+Course on Action  
+[Workflow Detail](${details_url})
 `
       })
     }
