@@ -13,7 +13,7 @@
 ## Start New Project with CLI
 
 ```sh
-npm create octoflare
+npm create octoflare@latest
 ```
 
 ## Setup
