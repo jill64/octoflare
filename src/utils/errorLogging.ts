@@ -15,8 +15,8 @@ export const errorLogging = async ({
 }) => {
   try {
     const limitedErrorMessage =
-      error.message.length > 30
-        ? `${error.message.substring(0, 30)}...`
+      error.message.length > 50
+        ? `${error.message.substring(0, 50)}...`
         : error.message
 
     const errorTitle = `Octoflare Error: ${limitedErrorMessage}`
