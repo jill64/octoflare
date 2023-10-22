@@ -45,7 +45,7 @@ export const errorLogging = async ({
       owner,
       repo,
       title: errorTitle,
-      body: `# ${error.name}  
+      body: `# ${error.name}
 ## Message  
 \`\`\`
 ${error.message}

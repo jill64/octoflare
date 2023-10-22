@@ -71,7 +71,9 @@ export const octoflare = <Env extends Record<string, unknown>>(
             owner: env.OCTOFLARE_APP_OWNER,
             repo: env.OCTOFLARE_APP_REPO,
             error: e,
-            info: checkTarget ? `${checkTarget.owner}/${checkTarget.repo}` : ''
+            info: checkTarget
+              ? `${checkTarget.owner}/${checkTarget.repo} in Worker`
+              : 'Error in Worker'
           })
         }
 
