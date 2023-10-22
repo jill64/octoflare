@@ -56,7 +56,7 @@ export const action = async (handler: ActionHandler) => {
         octokit: app_kit,
         ...context.repo,
         error: e,
-        info: `${owner}/${repo}`
+        info: `${owner}/${repo} in Action`
       })
     }
 

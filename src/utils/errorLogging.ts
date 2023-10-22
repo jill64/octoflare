@@ -5,14 +5,12 @@ export const errorLogging = async ({
   repo,
   owner,
   error,
-  info,
-  location
+  info
 }: {
   octokit: ActionOctokit
   repo: string
   owner: string
   error: Error
-  location: 'Worker' | 'Action'
   info?: string
 }) => {
   try {
@@ -47,7 +45,7 @@ export const errorLogging = async ({
       owner,
       repo,
       title: errorTitle,
-      body: `# ${error.name}  - ${location}
+      body: `# ${error.name}
 ## Message  
 \`\`\`
 ${error.message}
