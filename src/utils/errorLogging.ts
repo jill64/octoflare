@@ -21,7 +21,7 @@ export const errorLogging = async ({
 
     const errorTitle = `Octoflare Error: ${limitedErrorMessage}`
 
-    const { data: list } = await octokit.rest.issues.list({
+    const { data: list } = await octokit.rest.issues.listForRepo({
       owner,
       repo,
       per_page: 100,
