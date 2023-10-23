@@ -6,6 +6,7 @@ import { CompleteCheckRun } from '../types/CompleteCheckRun.js'
 import { DispatchWorkflow } from '../types/DispatchWorkflow.js'
 import { OctoflareInstallation } from '../types/OctoflareInstallation.js'
 import { OctoflarePayload } from '../types/OctoflarePayload.js'
+import { closeCheckRun } from './closeCheckRun.js'
 
 export const makeInstallation = async (
   {
@@ -91,20 +92,17 @@ export const makeInstallation = async (
 
   const createCheckRun = (async (params) => {
     const {
-      data: { id }
+      data: { id: check_run_id }
     } = await kit.rest.checks.create({
       ...params,
       status: 'in_progress'
     })
 
-    const check_run_id = id.toString()
-
     const completeCheckRun = (async (conclusion, output) => {
-      await kit.rest.checks.update({
+      await closeCheckRun({
+        kit,
         check_run_id,
-        owner: params.owner,
-        repo: params.repo,
-        status: 'completed',
+        ...params,
         conclusion,
         output
       })
@@ -121,7 +119,7 @@ export const makeInstallation = async (
         payload: {
           repo: params.repo,
           owner: params.owner,
-          check_run_id: id
+          check_run_id
         }
       })) satisfies DispatchWorkflow
 

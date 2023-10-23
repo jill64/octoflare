@@ -3,6 +3,7 @@ import github from '@actions/github'
 import { ChecksOutput } from '../types/ChecksOutput.js'
 import { Conclusion } from '../types/Conclusion.js'
 import { OctoflarePayload } from '../types/OctoflarePayload.js'
+import { closeCheckRun } from '../utils/closeCheckRun.js'
 import { errorLogging } from '../utils/errorLogging.js'
 import { ActionHandler } from './types/ActionHandler.js'
 
@@ -20,12 +21,12 @@ export const action = async (handler: ActionHandler) => {
 
   const close = async (conclusion: Conclusion, output?: ChecksOutput) => {
     if (check_run_id) {
-      await octokit.rest.checks.update({
+      await closeCheckRun({
+        kit: octokit,
         owner,
         repo,
         check_run_id,
         details_url,
-        status: 'completed',
         conclusion,
         output
       })
