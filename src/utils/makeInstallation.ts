@@ -109,7 +109,7 @@ export const makeInstallation = async (
 
       await Promise.all([
         kit.rest.apps.revokeInstallationAccessToken(),
-        app.octokit.rest.apps.revokeInstallationAccessToken()
+        app_kit.rest.apps.revokeInstallationAccessToken()
       ])
     }) satisfies CompleteCheckRun
 
