@@ -19,7 +19,7 @@ export const closeCheckRun = ({
   conclusion: Conclusion
   output?: ChecksOutput
   details_url?: string
-}) =>
+}): Promise<unknown> =>
   kit.rest.checks.update({
     check_run_id: check_run_id.toString(),
     owner,
