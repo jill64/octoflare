@@ -1,9 +1,9 @@
 import { ActionOctokit } from '../action/index.js'
 
 const limit = (str: string, num: number) =>
-  error.message.length > num
-    ? `${error.message.substring(0, num)}...`
-    : error.message
+  str.length > num
+    ? `${str.substring(0, num)}...`
+    : str
 
 export const errorLogging = async ({
   octokit,
