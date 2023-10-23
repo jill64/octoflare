@@ -106,11 +106,6 @@ export const makeInstallation = async (
         conclusion,
         output
       })
-
-      await Promise.all([
-        kit.rest.apps.revokeInstallationAccessToken(),
-        app_kit.rest.apps.revokeInstallationAccessToken()
-      ])
     }) satisfies CompleteCheckRun
 
     const dispatchWorkflow = ((inputs) =>
