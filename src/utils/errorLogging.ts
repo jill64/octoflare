@@ -1,5 +1,11 @@
 import { ActionOctokit } from '../action/index.js'
 
+const limit = (str: string, num: number) => 
+    error.message.length > num
+      ? `${error.message.substring(0, num)}...`
+      : error.message
+
+
 export const errorLogging = async ({
   octokit,
   repo,
@@ -14,12 +20,7 @@ export const errorLogging = async ({
   info?: string
 }) => {
   try {
-    const limitedErrorMessage =
-      error.message.length > 50
-        ? `${error.message.substring(0, 50)}...`
-        : error.message
-
-    const errorTitle = `Octoflare Error: ${limitedErrorMessage}`
+    const errorTitle = `Octoflare Error: ${limit(error.message, 64)}`
 
     const { data: list } = await octokit.rest.issues.listForRepo({
       owner,
@@ -45,7 +46,7 @@ export const errorLogging = async ({
       owner,
       repo,
       title: errorTitle,
-      body: `# ${error.name}
+      body: limit(`# ${error.name}
 ## Message  
 \`\`\`
 ${error.message}
@@ -58,7 +59,7 @@ ${info ?? 'No info provided'}
 \`\`\`
 ${error.stack ?? 'No stack trace'}
 \`\`\`
-`,
+`, 10000),
       labels: ['octoflare-error']
     })
   } catch (e) {
