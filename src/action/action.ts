@@ -14,7 +14,7 @@ export const action = async (handler: ActionHandler) => {
   const { token, app_token, check_run_id, owner, repo } = payload
 
   const octokit = github.getOctokit(token)
-  const app_kit = github.getOctokit(app_token)
+  const appkit = github.getOctokit(app_token)
 
   const { context } = github
   const details_url = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
@@ -33,7 +33,7 @@ export const action = async (handler: ActionHandler) => {
 
       await Promise.all([
         octokit.rest.apps.revokeInstallationAccessToken(),
-        app_kit.rest.apps.revokeInstallationAccessToken()
+        appkit.rest.apps.revokeInstallationAccessToken()
       ])
     }
   }
@@ -41,6 +41,7 @@ export const action = async (handler: ActionHandler) => {
   try {
     const result = await handler({
       octokit,
+      appkit,
       payload
     })
 
@@ -54,7 +55,7 @@ export const action = async (handler: ActionHandler) => {
   } catch (e) {
     if (e instanceof Error) {
       await errorLogging({
-        octokit: app_kit,
+        octokit: appkit,
         ...context.repo,
         error: e,
         info: `
