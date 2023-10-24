@@ -4,5 +4,6 @@ import { ActionOctokit } from './ActionOctokit.js'
 
 export type ActionHandler = (context: {
   octokit: ActionOctokit
+  appkit: ActionOctokit
   payload: OctoflarePayload
 }) => Promise<CloseCheckParam | void> | CloseCheckParam | void
