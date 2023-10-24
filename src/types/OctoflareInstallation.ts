@@ -9,6 +9,7 @@ export type OctoflareInstallation = {
   createCheckRun: (
     params: NonNullable<Parameters<Octokit['rest']['checks']['create']>[0]>
   ) => Promise<{
+    /** @deprecated Use to handler return value */
     completeCheckRun: CompleteCheckRun
     dispatchWorkflow: DispatchWorkflow
   }>
