@@ -48,6 +48,7 @@ ${error.message}
 \`\`\`
 
 ## Info  
+[Recent Deliveries](https://github.com/settings/apps/${repo}/advanced)  
 ${info ?? 'No info provided'}
 
 ## Stack Trace  
