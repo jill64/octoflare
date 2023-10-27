@@ -127,7 +127,6 @@ export const makeInstallation = async (
     })
 
     return {
-      completeCheckRun,
       dispatchWorkflow
     }
   }) satisfies OctoflareInstallation['createCheckRun']
