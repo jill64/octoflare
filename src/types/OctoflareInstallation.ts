@@ -1,5 +1,6 @@
 import { Octokit } from 'octokit'
 import { DispatchWorkflow } from './DispatchWorkflow.js'
+import { InstallationGetFile } from './InstallationGetFile.js'
 import { OctoflarePayload } from './OctoflarePayload.js'
 import { WorkflowInputs } from './WorkflowInputs.js'
 
@@ -15,4 +16,5 @@ export type OctoflareInstallation = {
       payload: Omit<OctoflarePayload, 'token' | 'app_token'>
     }
   ) => Promise<void>
+  getFile: InstallationGetFile
 }

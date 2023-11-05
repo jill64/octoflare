@@ -1,9 +1,11 @@
 import { WebhookEvent } from '@octokit/webhooks-types'
+import { Buffer } from 'node:buffer'
 import { App } from 'octokit'
 import { ActionOctokit } from '../action/index.js'
 import { OctoflareEnv } from '../index.js'
 import { CompleteCheckRun } from '../types/CompleteCheckRun.js'
 import { DispatchWorkflow } from '../types/DispatchWorkflow.js'
+import { InstallationGetFileOptions } from '../types/InstallationGetFileOptions.js'
 import { OctoflareInstallation } from '../types/OctoflareInstallation.js'
 import { OctoflarePayload } from '../types/OctoflarePayload.js'
 import { closeCheckRun } from './closeCheckRun.js'
@@ -131,11 +133,59 @@ export const makeInstallation = async (
     }
   }) satisfies OctoflareInstallation['createCheckRun']
 
+  const getFile = (async <T>(
+    path: string,
+    options?: InstallationGetFileOptions & {
+      parser?: (content: string) => T
+    }
+  ) => {
+    const { parser, raw, ref } = options ?? {}
+
+    try {
+      const [{ data }, rawString] = await Promise.all([
+        kit.rest.repos.getContent({
+          owner,
+          repo,
+          path,
+          ref
+        }),
+        raw
+          ? kit.rest.repos
+              .getContent({
+                owner,
+                repo,
+                path,
+                ref,
+                mediaType: {
+                  format: 'raw'
+                }
+              })
+              // @ts-expect-error octokit specific media type response
+              .then(({ data }) => data as string)
+          : ''
+      ])
+
+      if (!('type' in data && data.type === 'file')) {
+        return null
+      }
+
+      const str = raw
+        ? rawString
+        : Buffer.from(data.content, data.encoding as BufferEncoding).toString()
+
+      return parser?.(str) ?? str
+    } catch (e) {
+      console.error(e)
+      return null
+    }
+  }) satisfies OctoflareInstallation['getFile']
+
   return {
     installation: {
       kit,
       createCheckRun,
-      startWorkflow
+      startWorkflow,
+      getFile
     },
     app_kit
   }
