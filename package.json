@@ -1,7 +1,7 @@
 {
   "name": "octoflare",
   "version": "0.16.0",
-  "description": "A framework for building GitHub Apps with Cloudflare Worker",
+  "description": "🌤️ A framework for building GitHub Apps with Cloudflare Worker",
   "type": "module",
   "main": "dist/index.js",
   "license": "MIT",
@@ -9,15 +9,14 @@
   "bugs": "https://github.com/jill64/octoflare/issues",
   "homepage": "https://github.com/jill64/octoflare#readme",
   "files": [
-    "dist"
+    "dist",
+    "!*.test.*",
+    "!*.spec.*"
   ],
   "keywords": [
     "cloudflare",
-    "workers",
-    "github",
-    "app",
-    "webhook",
-    "octokit"
+    "framework",
+    "github"
   ],
   "exports": {
     ".": {
