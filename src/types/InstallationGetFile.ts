@@ -15,5 +15,8 @@ export type InstallationGetFile = {
       parser: (content: string) => T
     }
   ): Promise<FileData<T> | null>
-  (path: string, options?: InstallationGetFileOptions): Promise<string | null>
+  (
+    path: string,
+    options?: InstallationGetFileOptions
+  ): Promise<FileData<string> | null>
 }

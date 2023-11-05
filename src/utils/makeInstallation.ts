@@ -2,7 +2,7 @@ import { WebhookEvent } from '@octokit/webhooks-types'
 import { Buffer } from 'node:buffer'
 import { App } from 'octokit'
 import { ActionOctokit } from '../action/index.js'
-import { OctoflareEnv } from '../index.js'
+import { InstallationGetFile, OctoflareEnv } from '../index.js'
 import { CompleteCheckRun } from '../types/CompleteCheckRun.js'
 import { DispatchWorkflow } from '../types/DispatchWorkflow.js'
 import { InstallationGetFileOptions } from '../types/InstallationGetFileOptions.js'
@@ -62,7 +62,9 @@ export const makeInstallation = async (
 
   const app_kit = await app.getInstallationOctokit(app_installation_id)
 
-  const startWorkflow = (async (inputs) => {
+  const startWorkflow: OctoflareInstallation['startWorkflow'] = async (
+    inputs
+  ) => {
     const [token, app_token] = await Promise.all([
       kit.rest.apps
         .createInstallationAccessToken({
@@ -90,9 +92,11 @@ export const makeInstallation = async (
         } satisfies OctoflarePayload)
       }
     })
-  }) satisfies OctoflareInstallation['startWorkflow']
+  }
 
-  const createCheckRun = (async (params) => {
+  const createCheckRun: OctoflareInstallation['createCheckRun'] = async (
+    params
+  ) => {
     const {
       data: { id: check_run_id }
     } = await kit.rest.checks.create({
@@ -100,7 +104,7 @@ export const makeInstallation = async (
       status: 'in_progress'
     })
 
-    const completeCheckRun = (async (conclusion, output) => {
+    const completeCheckRun: CompleteCheckRun = async (conclusion, output) => {
       await closeCheckRun({
         kit,
         check_run_id,
@@ -108,9 +112,9 @@ export const makeInstallation = async (
         conclusion,
         output
       })
-    }) satisfies CompleteCheckRun
+    }
 
-    const dispatchWorkflow = ((inputs) =>
+    const dispatchWorkflow: DispatchWorkflow = (inputs) =>
       startWorkflow({
         ...inputs,
         payload: {
@@ -118,7 +122,7 @@ export const makeInstallation = async (
           owner: params.owner,
           check_run_id
         }
-      })) satisfies DispatchWorkflow
+      })
 
     onCreateCheck({
       completeCheckRun,
@@ -131,9 +135,9 @@ export const makeInstallation = async (
     return {
       dispatchWorkflow
     }
-  }) satisfies OctoflareInstallation['createCheckRun']
+  }
 
-  const getFile = (async <T>(
+  const getFile: InstallationGetFile = async <T>(
     path: string,
     options?: InstallationGetFileOptions & {
       parser?: (content: string) => T
@@ -173,12 +177,20 @@ export const makeInstallation = async (
         ? rawString
         : Buffer.from(data.content, data.encoding as BufferEncoding).toString()
 
-      return parser?.(str) ?? str
+      const content = parser?.(str) ?? str
+
+      return {
+        size: data.size,
+        name: data.name,
+        path: data.path,
+        sha: data.sha,
+        data: content
+      }
     } catch (e) {
       console.error(e)
       return null
     }
-  }) satisfies OctoflareInstallation['getFile']
+  }
 
   return {
     installation: {
