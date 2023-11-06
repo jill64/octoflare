@@ -133,7 +133,8 @@ export const makeInstallation = async (
     })
 
     return {
-      dispatchWorkflow
+      dispatchWorkflow,
+      completeCheckRun
     }
   }
 
