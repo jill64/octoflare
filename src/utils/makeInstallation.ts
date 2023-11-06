@@ -151,7 +151,7 @@ export const makeInstallation = async (
     }
 
     const { repository } = payload
-    
+
     const repo = repository.name
     const owner = repository.owner.login
 
