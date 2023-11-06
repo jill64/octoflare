@@ -146,6 +146,15 @@ export const makeInstallation = async (
   ) => {
     const { parser, raw, ref } = options ?? {}
 
+    if (!('repository' in payload && payload.repository)) {
+      throw new Error('No repository in payload')
+    }
+
+    const { repository } = payload
+    
+    const repo = repository.name
+    const owner = repository.owner.login
+
     try {
       const [{ data }, rawString] = await Promise.all([
         kit.rest.repos.getContent({
