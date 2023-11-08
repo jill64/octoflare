@@ -110,7 +110,7 @@ export const makeInstallation = async <Data extends OctoflarePayloadData>(
       })
     }
 
-    const dispatchWorkflow = ((data) =>
+    const dispatchWorkflow = ((data?: Data) =>
       startWorkflow({
         repo: params.repo,
         owner: params.owner,
