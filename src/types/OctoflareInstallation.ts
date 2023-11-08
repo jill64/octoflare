@@ -3,20 +3,18 @@ import { CompleteCheckRun } from './CompleteCheckRun.js'
 import { DispatchWorkflow } from './DispatchWorkflow.js'
 import { InstallationGetFile } from './InstallationGetFile.js'
 import { OctoflarePayload } from './OctoflarePayload.js'
-import { WorkflowInputs } from './WorkflowInputs.js'
+import { OctoflarePayloadData } from './OctoflarePayloadData.js'
 
-export type OctoflareInstallation = {
+export type OctoflareInstallation<Data extends OctoflarePayloadData> = {
   kit: Octokit
   createCheckRun: (
     params: NonNullable<Parameters<Octokit['rest']['checks']['create']>[0]>
   ) => Promise<{
-    dispatchWorkflow: DispatchWorkflow
+    dispatchWorkflow: DispatchWorkflow<Data>
     completeCheckRun: CompleteCheckRun
   }>
   startWorkflow: (
-    inputs: WorkflowInputs & {
-      payload: Omit<OctoflarePayload, 'token' | 'app_token'>
-    }
+    payload: Omit<OctoflarePayload<Data>, 'token' | 'app_token'>
   ) => Promise<void>
   getFile: InstallationGetFile
 }

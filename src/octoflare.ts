@@ -1,5 +1,6 @@
 import { WebhookEvent } from '@octokit/webhooks-types'
 import { App } from 'octokit'
+import { OctoflarePayloadData } from './index.js'
 import { CompleteCheckRun } from './types/CompleteCheckRun.js'
 import { OctoflareEnv } from './types/OctoflareEnv.js'
 import { OctoflareHandler } from './types/OctoflareHandler.js'
@@ -7,8 +8,11 @@ import { errorLogging } from './utils/errorLogging.js'
 import { makeInstallation } from './utils/makeInstallation.js'
 import { verify } from './utils/verify.js'
 
-export const octoflare = <Env extends Record<string, unknown>>(
-  handler: OctoflareHandler<Env & OctoflareEnv>
+export const octoflare = <
+  Data extends OctoflarePayloadData = undefined,
+  Env extends Record<string, unknown> = Record<string, never>
+>(
+  handler: OctoflareHandler<Data, Env & OctoflareEnv>
 ) => ({
   async fetch(request: Request, env: Env & OctoflareEnv): Promise<Response> {
     try {
@@ -97,4 +101,57 @@ Cause in Worker
       })
     }
   }
+})
+
+octoflare(async ({ installation }) => {
+  if (!installation) {
+    return 'success' as const
+  }
+
+  const res = await installation.createCheckRun({
+    repo: '',
+    owner: '',
+    name: '',
+    head_sha: ''
+  })
+
+  installation.startWorkflow({
+    repo: '',
+    owner: ''
+  })
+
+  res.dispatchWorkflow()
+
+  res.completeCheckRun('success')
+
+  return 'success' as const
+})
+
+octoflare<{ test: 'asd' }>(async ({ installation }) => {
+  if (!installation) {
+    return 'success' as const
+  }
+
+  const res = await installation.createCheckRun({
+    repo: '',
+    owner: '',
+    name: '',
+    head_sha: ''
+  })
+
+  installation.startWorkflow({
+    repo: '',
+    owner: '',
+    data: {
+      test: 'asd'
+    }
+  })
+
+  res.dispatchWorkflow({
+    test: 'asd'
+  })
+
+  res.completeCheckRun('success')
+
+  return 'success' as const
 })

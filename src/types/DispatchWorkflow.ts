@@ -1,3 +1,4 @@
-import { WorkflowInputs } from './WorkflowInputs.js'
+import { OctoflarePayloadData } from './OctoflarePayloadData.js'
 
-export type DispatchWorkflow = (inputs?: WorkflowInputs) => Promise<void>
+export type DispatchWorkflow<Data extends OctoflarePayloadData> =
+  Data extends undefined ? () => Promise<void> : (data: Data) => Promise<void>

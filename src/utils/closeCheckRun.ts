@@ -13,7 +13,7 @@ export const closeCheckRun = ({
   details_url
 }: {
   kit: ActionOctokit
-  check_run_id: number
+  check_run_id: number | string
   owner: string
   repo: string
   conclusion: Conclusion

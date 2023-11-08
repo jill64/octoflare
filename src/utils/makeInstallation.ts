@@ -2,15 +2,19 @@ import { WebhookEvent } from '@octokit/webhooks-types'
 import { Buffer } from 'node:buffer'
 import { App } from 'octokit'
 import { ActionOctokit } from '../action/index.js'
-import { InstallationGetFile, OctoflareEnv } from '../index.js'
+import {
+  InstallationGetFile,
+  OctoflareEnv,
+  OctoflarePayload,
+  OctoflarePayloadData
+} from '../index.js'
 import { CompleteCheckRun } from '../types/CompleteCheckRun.js'
 import { DispatchWorkflow } from '../types/DispatchWorkflow.js'
 import { InstallationGetFileOptions } from '../types/InstallationGetFileOptions.js'
 import { OctoflareInstallation } from '../types/OctoflareInstallation.js'
-import { OctoflarePayload } from '../types/OctoflarePayload.js'
 import { closeCheckRun } from './closeCheckRun.js'
 
-export const makeInstallation = async (
+export const makeInstallation = async <Data extends OctoflarePayloadData>(
   {
     payload,
     app,
@@ -28,10 +32,10 @@ export const makeInstallation = async (
     }
   }) => unknown
 ): Promise<{
-  installation: OctoflareInstallation | null
+  installation: OctoflareInstallation<Data> | null
   app_kit: ActionOctokit | null
 }> => {
-  if (!('installation' in payload)) {
+  if (!('installation' in payload && payload.installation)) {
     return {
       installation: null,
       app_kit: null
@@ -40,15 +44,8 @@ export const makeInstallation = async (
 
   const { installation } = payload
 
-  if (!installation) {
-    return {
-      installation: null,
-      app_kit: null
-    }
-  }
-
-  const owner = env.OCTOFLARE_APP_OWNER
-  const repo = env.OCTOFLARE_APP_REPO
+  const app_owner = env.OCTOFLARE_APP_OWNER
+  const app_repo = env.OCTOFLARE_APP_REPO
 
   const installation_id = installation.id
   const kit = await app.getInstallationOctokit(installation_id)
@@ -56,13 +53,13 @@ export const makeInstallation = async (
   const {
     data: { id: app_installation_id }
   } = await kit.rest.apps.getRepoInstallation({
-    owner,
-    repo
+    owner: app_owner,
+    repo: app_repo
   })
 
   const app_kit = await app.getInstallationOctokit(app_installation_id)
 
-  const startWorkflow: OctoflareInstallation['startWorkflow'] = async (
+  const startWorkflow: OctoflareInstallation<Data>['startWorkflow'] = async (
     inputs
   ) => {
     const [token, app_token] = await Promise.all([
@@ -79,22 +76,21 @@ export const makeInstallation = async (
     ])
 
     await app_kit.rest.actions.createWorkflowDispatch({
-      repo,
-      owner,
-      workflow_id: `${repo}.yml`,
+      repo: app_repo,
+      owner: app_owner,
+      workflow_id: `${app_repo}.yml`,
       ref: 'main',
       inputs: {
-        ...inputs,
         payload: JSON.stringify({
           token,
           app_token,
-          ...inputs.payload
-        } satisfies OctoflarePayload)
+          ...inputs
+        })
       }
     })
   }
 
-  const createCheckRun: OctoflareInstallation['createCheckRun'] = async (
+  const createCheckRun: OctoflareInstallation<Data>['createCheckRun'] = async (
     params
   ) => {
     const {
@@ -114,15 +110,13 @@ export const makeInstallation = async (
       })
     }
 
-    const dispatchWorkflow: DispatchWorkflow = (inputs) =>
+    const dispatchWorkflow = ((data) =>
       startWorkflow({
-        ...inputs,
-        payload: {
-          repo: params.repo,
-          owner: params.owner,
-          check_run_id
-        }
-      })
+        repo: params.repo,
+        owner: params.owner,
+        check_run_id,
+        ...(data ? { data } : {})
+      } as Omit<OctoflarePayload<Data>, 'token' | 'app_token'>)) as DispatchWorkflow<Data>
 
     onCreateCheck({
       completeCheckRun,
