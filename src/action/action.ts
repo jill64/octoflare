@@ -77,11 +77,3 @@ Cause on Action
     throw e
   }
 }
-
-action(async ({ payload }) => {
-  payload
-})
-
-action<{ test: 'asd' }>(async ({ payload }) => {
-  payload.data.test
-})
