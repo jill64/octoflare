@@ -1,6 +1,6 @@
 {
   "name": "octoflare",
-  "version": "0.19.1",
+  "version": "0.20.0",
   "description": "🌤️ A framework for building GitHub Apps with Cloudflare Worker",
   "type": "module",
   "main": "dist/index.js",
@@ -56,7 +56,7 @@
     "build": "tsc && npx publint",
     "prepack": "npm run build",
     "test": "vitest",
-    "lint": "npx eslint . && tsc && npx depcheck",
+    "lint": "npx eslint . && npx depcheck",
     "format": "npx prettier --write ."
   },
   "devDependencies": {

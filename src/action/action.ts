@@ -1,5 +1,6 @@
 import core from '@actions/core'
 import github from '@actions/github'
+import { OctoflarePayloadData } from '../index.js'
 import { ChecksOutput } from '../types/ChecksOutput.js'
 import { Conclusion } from '../types/Conclusion.js'
 import { OctoflarePayload } from '../types/OctoflarePayload.js'
@@ -7,9 +8,11 @@ import { closeCheckRun } from '../utils/closeCheckRun.js'
 import { errorLogging } from '../utils/errorLogging.js'
 import { ActionHandler } from './types/ActionHandler.js'
 
-export const action = async (handler: ActionHandler) => {
+export const action = async <Data extends OctoflarePayloadData = undefined>(
+  handler: ActionHandler<Data>
+) => {
   const payloadStr = core.getInput('payload', { required: true })
-  const payload = JSON.parse(payloadStr) as OctoflarePayload
+  const payload = JSON.parse(payloadStr) as OctoflarePayload<Data>
 
   const { token, app_token, check_run_id, owner, repo } = payload
 
@@ -74,3 +77,11 @@ Cause on Action
     throw e
   }
 }
+
+action(async ({ payload }) => {
+  payload
+})
+
+action<{ test: 'asd' }>(async ({ payload }) => {
+  payload.data.test
+})
