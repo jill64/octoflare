@@ -110,16 +110,13 @@ export const makeInstallation = async <Data extends OctoflarePayloadData>(
       })
     }
 
-    const dispatchWorkflow = ((data) =>
+    const dispatchWorkflow = ((data?: Data) =>
       startWorkflow({
         repo: params.repo,
         owner: params.owner,
         check_run_id,
         ...(data ? { data } : {})
-      } as Omit<
-        OctoflarePayload<Data>,
-        'token' | 'app_token'
-      >)) as DispatchWorkflow<Data>
+      } as Omit<OctoflarePayload<Data>, 'token' | 'app_token'>)) as DispatchWorkflow<Data>
 
     onCreateCheck({
       completeCheckRun,
