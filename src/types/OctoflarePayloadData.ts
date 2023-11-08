@@ -1,1 +1,3 @@
-export type OctoflarePayloadData = undefined | Record<string, string>
+import { Json } from './Json.js'
+
+export type OctoflarePayloadData = undefined | Json
