@@ -1,22 +1,25 @@
 import { ActionOctokit } from '../action/index.js'
 import { ChecksOutput } from '../index.js'
+import { CheckRunStatus } from '../types/CheckRunStatus.js'
 import { Conclusion } from '../types/Conclusion.js'
 import { limitStr } from './limitStr.js'
 
-export const closeCheckRun = ({
+export const updateChecks = ({
   kit,
   check_run_id,
   owner,
   repo,
   conclusion,
   output,
-  details_url
+  details_url,
+  status
 }: {
   kit: ActionOctokit
   check_run_id: number | string
   owner: string
   repo: string
   conclusion: Conclusion
+  status: CheckRunStatus
   output?: ChecksOutput
   details_url?: string
 }): Promise<unknown> =>
@@ -24,7 +27,7 @@ export const closeCheckRun = ({
     check_run_id: check_run_id.toString(),
     owner,
     repo,
-    status: 'completed',
+    status,
     conclusion,
     details_url,
     output: output
