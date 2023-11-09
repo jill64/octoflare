@@ -6,7 +6,8 @@ import {
   InstallationGetFile,
   OctoflareEnv,
   OctoflarePayload,
-  OctoflarePayloadData
+  OctoflarePayloadData,
+  UpdateCheckRun
 } from '../index.js'
 import { CompleteCheckRun } from '../types/CompleteCheckRun.js'
 import { DispatchWorkflow } from '../types/DispatchWorkflow.js'
@@ -111,12 +112,12 @@ export const makeInstallation = async <Data extends OctoflarePayloadData>(
       })
     }
 
-    const updateCheckRun: CompleteCheckRun = async (conclusion, output) => {
+    const updateCheckRun: UpdateCheckRun = async (output) => {
       await updateChecks({
         kit,
         check_run_id,
         ...params,
-        conclusion,
+        conclusion: 'neutral',
         output,
         status: 'in_progress'
       })
