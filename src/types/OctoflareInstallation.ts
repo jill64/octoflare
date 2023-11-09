@@ -12,6 +12,7 @@ export type OctoflareInstallation<Data extends OctoflarePayloadData> = {
   ) => Promise<{
     dispatchWorkflow: DispatchWorkflow<Data>
     completeCheckRun: CompleteCheckRun
+    updateCheckRun: CompleteCheckRun
   }>
   startWorkflow: (
     payload: Omit<OctoflarePayload<Data>, 'token' | 'app_token'>

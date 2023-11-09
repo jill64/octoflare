@@ -12,7 +12,7 @@ import { CompleteCheckRun } from '../types/CompleteCheckRun.js'
 import { DispatchWorkflow } from '../types/DispatchWorkflow.js'
 import { InstallationGetFileOptions } from '../types/InstallationGetFileOptions.js'
 import { OctoflareInstallation } from '../types/OctoflareInstallation.js'
-import { closeCheckRun } from './closeCheckRun.js'
+import { updateChecks } from './updateChecks.js'
 
 export const makeInstallation = async <Data extends OctoflarePayloadData>(
   {
@@ -101,12 +101,24 @@ export const makeInstallation = async <Data extends OctoflarePayloadData>(
     })
 
     const completeCheckRun: CompleteCheckRun = async (conclusion, output) => {
-      await closeCheckRun({
+      await updateChecks({
         kit,
         check_run_id,
         ...params,
         conclusion,
-        output
+        output,
+        status: 'completed'
+      })
+    }
+
+    const updateCheckRun: CompleteCheckRun = async (conclusion, output) => {
+      await updateChecks({
+        kit,
+        check_run_id,
+        ...params,
+        conclusion,
+        output,
+        status: 'in_progress'
       })
     }
 
@@ -116,10 +128,7 @@ export const makeInstallation = async <Data extends OctoflarePayloadData>(
         owner: params.owner,
         check_run_id,
         ...(data ? { data } : {})
-      } as Omit<
-        OctoflarePayload<Data>,
-        'token' | 'app_token'
-      >)) as DispatchWorkflow<Data>
+      } as Omit<OctoflarePayload<Data>, 'token' | 'app_token'>)) as DispatchWorkflow<Data>
 
     onCreateCheck({
       completeCheckRun,
@@ -131,7 +140,8 @@ export const makeInstallation = async <Data extends OctoflarePayloadData>(
 
     return {
       dispatchWorkflow,
-      completeCheckRun
+      completeCheckRun,
+      updateCheckRun
     }
   }
 

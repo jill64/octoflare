@@ -1,11 +1,11 @@
 import core from '@actions/core'
 import github from '@actions/github'
-import { OctoflarePayloadData } from '../index.js'
+import { CompleteCheckRun, OctoflarePayloadData } from '../index.js'
 import { ChecksOutput } from '../types/ChecksOutput.js'
 import { Conclusion } from '../types/Conclusion.js'
 import { OctoflarePayload } from '../types/OctoflarePayload.js'
-import { closeCheckRun } from '../utils/closeCheckRun.js'
 import { errorLogging } from '../utils/errorLogging.js'
+import { updateChecks } from '../utils/updateChecks.js'
 import { ActionHandler } from './types/ActionHandler.js'
 
 export const action = async <Data extends OctoflarePayloadData = undefined>(
@@ -24,14 +24,15 @@ export const action = async <Data extends OctoflarePayloadData = undefined>(
 
   const close = async (conclusion: Conclusion, output?: ChecksOutput) => {
     if (check_run_id) {
-      await closeCheckRun({
+      await updateChecks({
         kit: octokit,
         owner,
         repo,
         check_run_id,
         details_url,
         conclusion,
-        output
+        output,
+        status: 'completed'
       })
 
       await Promise.all([
@@ -41,11 +42,27 @@ export const action = async <Data extends OctoflarePayloadData = undefined>(
     }
   }
 
+  const updateCheckRun: CompleteCheckRun = async (conclusion, output) => {
+    if (check_run_id) {
+      await updateChecks({
+        kit: octokit,
+        owner,
+        repo,
+        check_run_id,
+        details_url,
+        conclusion,
+        output,
+        status: 'in_progress'
+      })
+    }
+  }
+
   try {
     const result = await handler({
       octokit,
       appkit,
-      payload
+      payload,
+      updateCheckRun
     })
 
     if (result) {
