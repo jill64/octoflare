@@ -18,7 +18,7 @@ export const updateChecks = ({
   check_run_id: number | string
   owner: string
   repo: string
-  conclusion: Conclusion
+  conclusion: Conclusion | 'neutral'
   status: CheckRunStatus
   output?: ChecksOutput
   details_url?: string

@@ -4,6 +4,7 @@ import { DispatchWorkflow } from './DispatchWorkflow.js'
 import { InstallationGetFile } from './InstallationGetFile.js'
 import { OctoflarePayload } from './OctoflarePayload.js'
 import { OctoflarePayloadData } from './OctoflarePayloadData.js'
+import { UpdateCheckRun } from './UpdateCheckRun.js'
 
 export type OctoflareInstallation<Data extends OctoflarePayloadData> = {
   kit: Octokit
@@ -12,7 +13,7 @@ export type OctoflareInstallation<Data extends OctoflarePayloadData> = {
   ) => Promise<{
     dispatchWorkflow: DispatchWorkflow<Data>
     completeCheckRun: CompleteCheckRun
-    updateCheckRun: CompleteCheckRun
+    updateCheckRun: UpdateCheckRun
   }>
   startWorkflow: (
     payload: Omit<OctoflarePayload<Data>, 'token' | 'app_token'>

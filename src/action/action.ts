@@ -1,6 +1,6 @@
 import core from '@actions/core'
 import github from '@actions/github'
-import { CompleteCheckRun, OctoflarePayloadData } from '../index.js'
+import { OctoflarePayloadData, UpdateCheckRun } from '../index.js'
 import { ChecksOutput } from '../types/ChecksOutput.js'
 import { Conclusion } from '../types/Conclusion.js'
 import { OctoflarePayload } from '../types/OctoflarePayload.js'
@@ -42,7 +42,7 @@ export const action = async <Data extends OctoflarePayloadData = undefined>(
     }
   }
 
-  const updateCheckRun: CompleteCheckRun = async (conclusion, output) => {
+  const updateCheckRun: UpdateCheckRun = async (output) => {
     if (check_run_id) {
       await updateChecks({
         kit: octokit,
@@ -50,8 +50,8 @@ export const action = async <Data extends OctoflarePayloadData = undefined>(
         repo,
         check_run_id,
         details_url,
-        conclusion,
         output,
+        conclusion: 'neutral',
         status: 'in_progress'
       })
     }
