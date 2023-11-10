@@ -14,9 +14,11 @@
     "!*.spec.*"
   ],
   "keywords": [
+    "actions",
     "cloudflare",
     "framework",
-    "github"
+    "github",
+    "worker"
   ],
   "exports": {
     ".": {
