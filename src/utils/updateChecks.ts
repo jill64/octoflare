@@ -15,7 +15,7 @@ export const updateChecks = ({
   status
 }: {
   kit: ActionOctokit
-  check_run_id: number | string
+  check_run_id: number
   owner: string
   repo: string
   conclusion: Conclusion | 'neutral'
@@ -24,7 +24,7 @@ export const updateChecks = ({
   details_url?: string
 }): Promise<unknown> =>
   kit.rest.checks.update({
-    check_run_id: check_run_id.toString(),
+    check_run_id,
     owner,
     repo,
     status,

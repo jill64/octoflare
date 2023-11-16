@@ -5,5 +5,5 @@ export type OctoflarePayload<Data extends OctoflarePayloadData> = {
   app_token: string
   repo: string
   owner: string
-  check_run_id?: number | string
+  check_run_id?: number
 } & (Data extends undefined ? unknown : { data: Data })
