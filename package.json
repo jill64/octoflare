@@ -1,6 +1,6 @@
 {
   "name": "octoflare",
-  "version": "0.21.3",
+  "version": "0.21.4",
   "description": "🌤️ A framework for building GitHub Apps with Cloudflare Worker",
   "type": "module",
   "main": "dist/index.js",
@@ -72,7 +72,7 @@
   "dependencies": {
     "@actions/core": "1.10.1",
     "@actions/github": "6.0.0",
-    "@cloudflare/workers-types": "4.20231025.0",
+    "@cloudflare/workers-types": "4.20231121.0",
     "@octokit/webhooks-types": "7.3.1",
     "octokit": "3.1.2"
   }
