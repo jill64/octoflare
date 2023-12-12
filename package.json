@@ -5,13 +5,17 @@
   "type": "module",
   "main": "dist/index.js",
   "license": "MIT",
-  "author": "jill64 <intents.turrets0h@icloud.com> (https://github.com/jill64)",
+  "author": {
+    "name": "jill64",
+    "email": "143883742+jill64@users.noreply.github.com",
+    "url": "https://github.com/jill64",
+    "image": "https://avatars.githubusercontent.com/u/143883742?v=4"
+  },
   "bugs": "https://github.com/jill64/octoflare/issues",
   "homepage": "https://github.com/jill64/octoflare#readme",
   "files": [
     "dist",
-    "!*.test.*",
-    "!*.spec.*"
+    "!**/*.test.*"
   ],
   "keywords": [
     "actions",
@@ -52,20 +56,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jill64/octoflare.git"
+    "url": "https://github.com/jill64/octoflare.git",
+    "image": "https://opengraph.githubassets.com/101ebf1ca4e551dd60829e1a666c75434993f9152201b21eb63e5a46944966bf/jill64/octoflare"
   },
   "scripts": {
     "build": "tsc && npx publint",
     "prepack": "npm run build",
     "test": "vitest",
     "lint": "npx eslint . && npx depcheck",
-    "format": "npx prettier --write ."
+    "format": "npx prettier -w ."
   },
+  "prettier": "@jill64/prettier-config",
   "devDependencies": {
     "@types/node": "20.10.4",
-    "@typescript-eslint/eslint-plugin": "6.13.2",
-    "@typescript-eslint/parser": "6.13.2",
-    "eslint-plugin-deprecation": "2.0.0",
+    "@jill64/eslint-config-ts": "1.0.2",
+    "@jill64/prettier-config": "1.0.0",
     "typescript": "5.3.3",
     "vitest": "1.0.4"
   },
