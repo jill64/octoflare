@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
@@ -7,5 +9,6 @@
     "strict": true,
     "outDir": "dist",
     "declaration": true
-  }
+  },
+  "include": ["src"],
 }

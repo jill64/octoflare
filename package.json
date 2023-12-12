@@ -10,8 +10,7 @@
   "homepage": "https://github.com/jill64/octoflare#readme",
   "files": [
     "dist",
-    "!*.test.*",
-    "!*.spec.*"
+    "!**/*.test.*"
   ],
   "keywords": [
     "actions",
@@ -59,13 +58,13 @@
     "prepack": "npm run build",
     "test": "vitest",
     "lint": "npx eslint . && npx depcheck",
-    "format": "npx prettier --write ."
+    "format": "npx prettier -w ."
   },
+  "prettier": "@jill64/prettier-config",
   "devDependencies": {
     "@types/node": "20.10.4",
-    "@typescript-eslint/eslint-plugin": "6.13.2",
-    "@typescript-eslint/parser": "6.13.2",
-    "eslint-plugin-deprecation": "2.0.0",
+    "@jill64/eslint-config-ts": "1.0.2",
+    "@jill64/prettier-config": "1.0.0",
     "typescript": "5.3.3",
     "vitest": "1.0.4"
   },
