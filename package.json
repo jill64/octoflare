@@ -5,7 +5,12 @@
   "type": "module",
   "main": "dist/index.js",
   "license": "MIT",
-  "author": "jill64 <intents.turrets0h@icloud.com> (https://github.com/jill64)",
+  "author": {
+    "name": "jill64",
+    "email": "143883742+jill64@users.noreply.github.com",
+    "url": "https://github.com/jill64",
+    "image": "https://avatars.githubusercontent.com/u/143883742?v=4"
+  },
   "bugs": "https://github.com/jill64/octoflare/issues",
   "homepage": "https://github.com/jill64/octoflare#readme",
   "files": [
@@ -51,7 +56,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jill64/octoflare.git"
+    "url": "https://github.com/jill64/octoflare.git",
+    "image": "https://opengraph.githubassets.com/101ebf1ca4e551dd60829e1a666c75434993f9152201b21eb63e5a46944966bf/jill64/octoflare"
   },
   "scripts": {
     "build": "tsc && npx publint",
