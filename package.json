@@ -57,7 +57,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jill64/octoflare.git",
-    "image": "https://opengraph.githubassets.com/068a0c221c49e0ae37571d8231622c867a5778c00b9c55aa6f10232177793cba/jill64/octoflare"
+    "image": "https://opengraph.githubassets.com/057a59a343b24f1cbfa21af9bafbb1328b6c3216bcda8b5549a6c5a7967740dc/jill64/octoflare"
   },
   "scripts": {
     "build": "tsc && npx publint",
@@ -69,7 +69,7 @@
   "prettier": "@jill64/prettier-config",
   "devDependencies": {
     "@types/node": "20.10.4",
-    "@jill64/eslint-config-ts": "1.0.4",
+    "@jill64/eslint-config-ts": "1.0.5",
     "@jill64/prettier-config": "1.0.0",
     "typescript": "5.3.3",
     "vitest": "1.0.4"
