@@ -68,7 +68,7 @@
   },
   "prettier": "@jill64/prettier-config",
   "devDependencies": {
-    "@types/node": "20.10.4",
+    "@types/node": "20.10.5",
     "@jill64/eslint-config-ts": "1.0.5",
     "@jill64/prettier-config": "1.0.0",
     "typescript": "5.3.3",
