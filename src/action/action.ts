@@ -62,7 +62,6 @@ export const action = async <Data extends OctoflarePayloadData = undefined>(
         check_run_id,
         details_url,
         output,
-        conclusion: 'neutral',
         status: 'in_progress'
       })
     }

@@ -18,7 +18,7 @@ export const updateChecks = ({
   check_run_id: number
   owner: string
   repo: string
-  conclusion: Conclusion | 'neutral'
+  conclusion?: Conclusion
   status: CheckRunStatus
   output?: ChecksOutput
   details_url?: string
@@ -28,7 +28,7 @@ export const updateChecks = ({
     owner,
     repo,
     status,
-    conclusion,
+    ...(conclusion ? { conclusion } : {}),
     details_url,
     output: output
       ? {

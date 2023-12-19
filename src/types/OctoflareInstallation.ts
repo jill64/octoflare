@@ -11,9 +11,12 @@ export type OctoflareInstallation<Data extends OctoflarePayloadData> = {
    * Octokit instance with installation access token.
    */
   kit: Octokit
-  createCheckRun: (
-    params: NonNullable<Parameters<Octokit['rest']['checks']['create']>[0]>
-  ) => Promise<{
+  createCheckRun: (params: {
+    owner: string
+    repo: string
+    name: string
+    head_sha: string
+  }) => Promise<{
     /**
      * Dispatch workflow run.
      * It inherits `owner`, `repo`, `check_run_id` of `createCheckRun`.

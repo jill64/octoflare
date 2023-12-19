@@ -117,7 +117,6 @@ export const makeInstallation = async <Data extends OctoflarePayloadData>(
         kit,
         check_run_id,
         ...params,
-        conclusion: 'neutral',
         output,
         status: 'in_progress'
       })
