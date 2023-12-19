@@ -9,7 +9,12 @@ import { updateChecks } from '../utils/updateChecks.js'
 import { ActionHandler } from './types/ActionHandler.js'
 
 export const action = async <Data extends OctoflarePayloadData = undefined>(
-  handler: ActionHandler<Data>
+  handler: ActionHandler<Data>,
+  {
+    skipTokenRevocation
+  }: {
+    skipTokenRevocation?: boolean
+  }
 ) => {
   const payloadStr = core.getInput('payload', { required: true })
   const payload = JSON.parse(payloadStr) as OctoflarePayload<Data>
@@ -22,30 +27,30 @@ export const action = async <Data extends OctoflarePayloadData = undefined>(
   const { context } = github
   const details_url = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
 
-  const close = async (
-    conclusion: Conclusion,
-    output?: ChecksOutput,
-    skipTokenRevocation?: boolean
-  ) => {
-    if (check_run_id) {
-      await updateChecks({
-        kit: octokit,
-        owner,
-        repo,
-        check_run_id,
-        details_url,
-        conclusion,
-        output,
-        status: 'completed'
-      })
-
-      if (!skipTokenRevocation) {
-        await Promise.all([
-          octokit.rest.apps.revokeInstallationAccessToken(),
-          appkit.rest.apps.revokeInstallationAccessToken()
-        ])
-      }
+  const close = async (conclusion: Conclusion, output?: ChecksOutput) => {
+    if (!check_run_id) {
+      return
     }
+
+    await updateChecks({
+      kit: octokit,
+      owner,
+      repo,
+      check_run_id,
+      details_url,
+      conclusion,
+      output,
+      status: 'completed'
+    })
+
+    if (skipTokenRevocation) {
+      return
+    }
+
+    await Promise.all([
+      octokit.rest.apps.revokeInstallationAccessToken(),
+      appkit.rest.apps.revokeInstallationAccessToken()
+    ])
   }
 
   const updateCheckRun: UpdateCheckRun = async (output) => {
@@ -71,13 +76,13 @@ export const action = async <Data extends OctoflarePayloadData = undefined>(
       updateCheckRun
     })
 
-    if (result) {
-      return await (typeof result === 'string'
-        ? close(result)
-        : close(result.conclusion, result.output, result.skipTokenRevocation))
+    if (!result) {
+      return
     }
 
-    await close('success')
+    return await (typeof result === 'string'
+      ? close(result)
+      : close(result.conclusion, result.output))
   } catch (e) {
     if (e instanceof Error) {
       await errorLogging({
