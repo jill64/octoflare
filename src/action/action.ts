@@ -10,12 +10,12 @@ import { ActionHandler } from './types/ActionHandler.js'
 
 export const action = async <Data extends OctoflarePayloadData = undefined>(
   handler: ActionHandler<Data>,
-  {
-    skipTokenRevocation
-  }: {
+  options?: {
     skipTokenRevocation?: boolean
   }
 ) => {
+  const { skipTokenRevocation } = options ?? {}
+
   const payloadStr = core.getInput('payload', { required: true })
   const payload = JSON.parse(payloadStr) as OctoflarePayload<Data>
 
