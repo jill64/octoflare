@@ -6,8 +6,6 @@
   "main": "dist/index.js",
   "license": "MIT",
   "author": {
-    "name": "jill64",
-    "email": "143883742+jill64@users.noreply.github.com",
     "url": "https://github.com/jill64",
     "image": "https://avatars.githubusercontent.com/u/143883742?v=4"
   },
@@ -19,6 +17,7 @@
   ],
   "keywords": [
     "actions",
+    "beta",
     "cloudflare",
     "framework",
     "github",
