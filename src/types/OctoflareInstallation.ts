@@ -1,4 +1,5 @@
 import { Octokit } from 'octokit'
+import { ChecksOutput } from './ChecksOutput.js'
 import { CompleteCheckRun } from './CompleteCheckRun.js'
 import { DispatchWorkflow } from './DispatchWorkflow.js'
 import { InstallationGetFile } from './InstallationGetFile.js'
@@ -16,6 +17,7 @@ export type OctoflareInstallation<Data extends OctoflarePayloadData> = {
     repo: string
     name: string
     head_sha: string
+    output: ChecksOutput
   }) => Promise<{
     /**
      * Dispatch workflow run.
