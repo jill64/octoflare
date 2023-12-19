@@ -22,7 +22,11 @@ export const action = async <Data extends OctoflarePayloadData = undefined>(
   const { context } = github
   const details_url = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
 
-  const close = async (conclusion: Conclusion, output?: ChecksOutput) => {
+  const close = async (
+    conclusion: Conclusion,
+    output?: ChecksOutput,
+    skipTokenRevocation?: boolean
+  ) => {
     if (check_run_id) {
       await updateChecks({
         kit: octokit,
@@ -35,10 +39,12 @@ export const action = async <Data extends OctoflarePayloadData = undefined>(
         status: 'completed'
       })
 
-      await Promise.all([
-        octokit.rest.apps.revokeInstallationAccessToken(),
-        appkit.rest.apps.revokeInstallationAccessToken()
-      ])
+      if (!skipTokenRevocation) {
+        await Promise.all([
+          octokit.rest.apps.revokeInstallationAccessToken(),
+          appkit.rest.apps.revokeInstallationAccessToken()
+        ])
+      }
     }
   }
 
@@ -68,7 +74,7 @@ export const action = async <Data extends OctoflarePayloadData = undefined>(
     if (result) {
       return await (typeof result === 'string'
         ? close(result)
-        : close(result.conclusion, result.output))
+        : close(result.conclusion, result.output, result.skipTokenRevocation))
     }
 
     await close('success')

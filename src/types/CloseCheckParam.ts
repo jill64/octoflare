@@ -6,4 +6,10 @@ export type CloseCheckParam =
   | {
       conclusion: Conclusion
       output: ChecksOutput
+      /**
+       * Skip automatic token expiration when handler execution is complete.
+       * Due to security concerns, please avoid enabling this option if at all possible.
+       * @default false
+       */
+      skipTokenRevocation?: boolean
     }
