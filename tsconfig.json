@@ -2,13 +2,9 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
+    "strict": true,
+    "declaration": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "outDir": "dist",
-    "declaration": true
-  },
-  "include": ["src"]
+  }
 }
