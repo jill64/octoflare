@@ -1,0 +1,77 @@
+{
+  "name": "octoflare",
+  "version": "0.23.4",
+  "description": "🌤️ A framework for building GitHub Apps with Cloudflare Worker",
+  "type": "module",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "author": {
+    "name": "jill64",
+    "email": "intents.turrets0h@icloud.com",
+    "url": "https://github.com/jill64",
+    "image": "https://avatars.githubusercontent.com/u/143883742?v=4"
+  },
+  "bugs": "https://github.com/jill64/octoflare/issues",
+  "homepage": "https://github.com/jill64/octoflare#readme",
+  "files": [
+    "dist",
+    "!**/*.test.*"
+  ],
+  "keywords": [
+    "actions",
+    "beta",
+    "cloudflare",
+    "framework",
+    "github",
+    "worker"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./workers": {
+      "types": "./dist/re-exports/workers.d.ts",
+      "default": "./dist/re-exports/workers.js"
+    },
+    "./octokit": {
+      "types": "./dist/re-exports/octokit.d.ts",
+      "default": "./dist/re-exports/octokit.js"
+    },
+    "./webhook": {
+      "types": "./dist/re-exports/webhook.d.ts",
+      "default": "./dist/re-exports/webhook.js"
+    },
+    "./action": {
+      "types": "./dist/action/index.d.ts",
+      "default": "./dist/action/index.js"
+    },
+    "./action/core": {
+      "types": "./dist/re-exports/actions/core.d.ts",
+      "default": "./dist/re-exports/actions/core.js"
+    },
+    "./action/github": {
+      "types": "./dist/re-exports/actions/github.d.ts",
+      "default": "./dist/re-exports/actions/github.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jill64/octoflare.git",
+    "image": "https://opengraph.githubassets.com/057a59a343b24f1cbfa21af9bafbb1328b6c3216bcda8b5549a6c5a7967740dc/jill64/octoflare"
+  },
+  "scripts": {
+    "build": "tsc && publint",
+    "prepack": "npm run build",
+    "lint": "eslint .",
+    "format": "prettier -w ."
+  },
+  "prettier": "@jill64/prettier-config",
+  "dependencies": {
+    "@actions/core": "1.10.1",
+    "@actions/github": "6.0.0",
+    "@cloudflare/workers-types": "4.20231218.0",
+    "@octokit/webhooks-types": "7.3.1",
+    "octokit": "3.1.2"
+  }
+}
