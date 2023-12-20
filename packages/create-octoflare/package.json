@@ -31,11 +31,11 @@
     "image": "https://opengraph.githubassets.com/057a59a343b24f1cbfa21af9bafbb1328b6c3216bcda8b5549a6c5a7967740dc/jill64/octoflare"
   },
   "scripts": {
-    "dev": "npx tsx src/index.ts",
     "build": "tsc && publint",
-    "prepack": "npm run build",
+    "prepack": "pnpm build",
     "lint": "eslint .",
-    "format": "prettier -w ."
+    "format": "prettier -w .",
+    "test:run": "npx tsx src/index.ts"
   },
   "prettier": "@jill64/prettier-config",
   "dependencies": {
