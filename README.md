@@ -2,7 +2,11 @@
 
 # octoflare
 
-<!----- BEGIN GHOST DOCS BADGES -----><a href="https://npmjs.com/package/octoflare"><img src="https://img.shields.io/npm/v/octoflare" alt="npm-version" /></a> <a href="https://npmjs.com/package/octoflare"><img src="https://img.shields.io/npm/l/octoflare" alt="npm-license" /></a> <a href="https://npmjs.com/package/octoflare"><img src="https://img.shields.io/npm/dm/octoflare" alt="npm-download-month" /></a> <a href="https://npmjs.com/package/octoflare"><img src="https://img.shields.io/bundlephobia/min/octoflare" alt="npm-min-size" /></a> <a href="https://github.com/jill64/octoflare/actions/workflows/ci.yml"><img src="https://github.com/jill64/octoflare/actions/workflows/ci.yml/badge.svg" alt="ci.yml" /></a><!----- END GHOST DOCS BADGES ----->
+
+<!----- BEGIN GHOST DOCS BADGES ----->
+<a href="https://github.com/jill64/octoflare/actions/workflows/ci.yml"><img src="https://github.com/jill64/octoflare/actions/workflows/ci.yml/badge.svg" alt="ci.yml" /></a>
+<!----- END GHOST DOCS BADGES ----->
+
 
 🌤️ A framework for building GitHub Apps with Cloudflare Worker
 
@@ -62,8 +66,12 @@ export default octoflare(
   async ({ request, env, app, payload, installation }) => {
     // Application Code
 
+    // Create Status Check for Target SHA
     const { dispatchWorkflow } = await installation.createCheckRun({
-      // ...
+      repo: 'repository-name',
+      owner: 'repository-owner',
+      name: 'workflow-name',
+      head_sha: 'target-sha'
     })
 
     await dispatchWorkflow({
@@ -77,7 +85,7 @@ export default octoflare(
 )
 ```
 
-[Handler Type Definition](./src/types/OctoflareHandler.ts)
+[Handler Type Definition](./packages/octoflare/src/types/OctoflareHandler.ts)
 
 ### Action
 
