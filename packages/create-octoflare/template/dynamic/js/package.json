@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build:action": "node action/scripts/build.js"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "--app-slug--",
+  "description": "--APP-DESCRIPTION--",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "wrangler deploy --dry-run && npm run build:action",
+    "deploy": "wrangler deploy",
+    "lint": "prettier --check . && eslint . && npx depcheck",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "octoflare": "0.23.4",
+    "esbuild": "0.19.10",
+    "eslint": "8.56.0",
+    "prettier": "3.1.1",
+    "wrangler": "3.22.0"
+  }
+}
