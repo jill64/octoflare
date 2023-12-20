@@ -1,0 +1,23 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && npx svelte-check",
+    "lint": "pnpm check && eslint .",
+    "format": "npx @jill64/psx"
+  },
+  "prettier": "@jill64/prettier-config",
+  "devDependencies": {
+    "@jill64/eslint-config-svelte": "1.0.7",
+    "@jill64/sentry-sveltekit-cloudflare": "1.7.0",
+    "@jill64/svelte-suite": "1.1.28",
+    "@jill64/svelte-tailwind": "1.0.8",
+    "@sveltejs/adapter-cloudflare": "3.0.1",
+    "@sveltejs/kit": "2.0.4",
+    "svelte": "4.2.8",
+    "vite": "5.0.10",
+    "@sveltejs/vite-plugin-svelte": "3.0.1"
+  }
+}
