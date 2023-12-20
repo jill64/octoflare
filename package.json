@@ -70,7 +70,7 @@
   "prettier": "@jill64/prettier-config",
   "devDependencies": {
     "@types/node": "20.10.5",
-    "@jill64/eslint-config-ts": "1.0.6",
+    "@jill64/eslint-config-ts": "1.0.7",
     "@jill64/prettier-config": "1.0.0",
     "typescript": "5.3.3",
     "vitest": "1.1.0"
