@@ -62,8 +62,12 @@ export default octoflare(
   async ({ request, env, app, payload, installation }) => {
     // Application Code
 
+    // Create Status Check for Target SHA
     const { dispatchWorkflow } = await installation.createCheckRun({
-      // ...
+      repo: 'repository-name',
+      owner: 'repository-owner',
+      name: 'workflow-name',
+      head_sha: 'target-sha'
     })
 
     await dispatchWorkflow({
@@ -77,7 +81,7 @@ export default octoflare(
 )
 ```
 
-[Handler Type Definition](./src/types/OctoflareHandler.ts)
+[Handler Type Definition](./packages/octoflare/src/types/OctoflareHandler.ts)
 
 ### Action
 
