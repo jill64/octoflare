@@ -16,7 +16,6 @@
   "files": [
     "dist",
     "template",
-    "template/static/.gitignore",
     "!**/node_modules"
   ],
   "keywords": [
