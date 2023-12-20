@@ -1,0 +1,10 @@
+name = "--app-slug--"
+main = "src/index.--EXTENSION--"
+compatibility_date = "--YYYY-MM-DD--"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+
+OCTOFLARE_APP_ID = "__APP_ID__"
+OCTOFLARE_APP_OWNER = "--GITHUB-REPO-OWNER--"
+OCTOFLARE_APP_REPO = "--app-slug--"

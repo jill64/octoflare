@@ -1,4 +1,5 @@
 {
+  "version": "0.24.0",
   "type": "module",
   "scripts": {
     "build": "pnpm -r build",

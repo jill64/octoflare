@@ -1,0 +1,11 @@
+name: --APP-NAME--
+description: GitHub Action for --APP-NAME--
+
+inputs:
+  payload:
+    description: Octoflare Payload
+    required: true
+
+runs:
+  using: node20
+  main: action/dist/index.cjs

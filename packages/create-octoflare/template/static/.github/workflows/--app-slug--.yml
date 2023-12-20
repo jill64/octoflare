@@ -1,0 +1,54 @@
+name: --APP-NAME--
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        required: true
+env:
+  GH_TOKEN: ${{ fromJson(inputs.payload).token }}
+  repository: ${{ fromJson(inputs.payload).owner }}/${{ fromJson(inputs.payload).repo }}
+
+jobs:
+  --app-slug--:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          token: ${{ env.GH_TOKEN }}
+          repository: ${{ env.repository }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4
+        with:
+          node-version: 20
+
+      - name: --APP-NAME--
+        uses: --GITHUB-REPO-OWNER--/--app-slug--@main
+        with:
+          payload: ${{ inputs.payload }}
+
+  on-error:
+    needs: --app-slug--
+    if: failure()
+    runs-on: ubuntu-latest
+    env:
+      check_run_id: ${{ fromJson(inputs.payload).data.check_run_id }}
+    steps:
+      - name: Close Check Run
+        if: env.check_run_id
+        run: |
+          gh api \
+            --method PATCH \
+            /repos/${{ env.repository }}/check-runs/${{ env.check_run_id }} \
+            --field status=completed \
+            --field conclusion=failure
+
+      - name: Revoke Installation Token
+        run: gh api --method DELETE /installation/token
+
+      - name: Revoke App Token
+        run: gh api --method DELETE /installation/token
+        env:
+          GH_TOKEN: ${{ fromJson(inputs.payload).app_token }}

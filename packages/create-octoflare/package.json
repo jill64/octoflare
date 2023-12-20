@@ -1,0 +1,47 @@
+{
+  "name": "create-octoflare",
+  "version": "0.3.2",
+  "description": "🌤️ A CLI for creating new Octoflare projects",
+  "type": "module",
+  "bin": "dist/index.js",
+  "license": "MIT",
+  "author": {
+    "name": "jill64",
+    "email": "intents.turrets0h@icloud.com",
+    "url": "https://github.com/jill64",
+    "image": "https://avatars.githubusercontent.com/u/143883742?v=4"
+  },
+  "bugs": "https://github.com/jill64/create-octoflare/issues",
+  "homepage": "https://github.com/jill64/create-octoflare#readme",
+  "files": [
+    "dist",
+    "template",
+    "template/static/.gitignore",
+    "!**/node_modules"
+  ],
+  "keywords": [
+    "beta",
+    "cloudflare",
+    "github-app",
+    "octoflare",
+    "octokit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jill64/create-octoflare.git",
+    "image": "https://opengraph.githubassets.com/c517e05a6fe7f04603dcfeab1ab30be3e688f599aa725ed93d7db661def43fba/jill64/create-octoflare"
+  },
+  "scripts": {
+    "dev": "npx tsx src/index.ts",
+    "build": "tsc && publint",
+    "prepack": "npm run build",
+    "lint": "eslint .",
+    "format": "prettier -w ."
+  },
+  "prettier": "@jill64/prettier-config",
+  "dependencies": {
+    "@clack/prompts": "0.7.0",
+    "deepmerge": "4.3.1",
+    "kleur": "4.1.5"
+  }
+}
