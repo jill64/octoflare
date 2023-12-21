@@ -12,7 +12,7 @@
   "devDependencies": {
     "@jill64/eslint-config-svelte": "1.0.7",
     "@jill64/sentry-sveltekit-cloudflare": "1.7.0",
-    "@jill64/svelte-suite": "1.1.28",
+    "@jill64/svelte-suite": "1.1.30",
     "@jill64/svelte-tailwind": "1.0.9",
     "@sveltejs/adapter-cloudflare": "3.0.1",
     "@sveltejs/kit": "2.0.5",
