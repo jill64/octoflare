@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "octoflare": "0.24.0",
-    "esbuild": "0.19.10",
+    "esbuild": "0.19.11",
     "eslint": "8.56.0",
     "prettier": "3.1.1",
     "wrangler": "3.22.1"
