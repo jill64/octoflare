@@ -11,7 +11,7 @@
   "prettier": "@jill64/prettier-config",
   "devDependencies": {
     "@jill64/eslint-config-svelte": "1.1.1",
-    "@jill64/sentry-sveltekit-cloudflare": "1.7.4",
+    "@jill64/sentry-sveltekit-cloudflare": "1.7.5",
     "@jill64/svelte-suite": "1.1.94",
     "@jill64/svelte-tailwind": "1.0.28",
     "@sveltejs/adapter-cloudflare": "4.1.0",
