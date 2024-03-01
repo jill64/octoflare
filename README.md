@@ -111,6 +111,6 @@ action(({ request, env, app, payload }) => {
 
 ## License
 
-MIT
+[MIT](LICENSE)
 
 <!----- END GHOST DOCS FOOTER ----->
