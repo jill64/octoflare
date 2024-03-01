@@ -26,7 +26,7 @@ npm create octoflare
 
 The following must be set as environment variables for Cloudflare Workers
 
-| Key                         | Value                                            | Reccomend Encryption | Auto Set by CLI |
+| Key                         | Value                                            | Recommend Encryption | Auto Set by CLI |
 | --------------------------- | ------------------------------------------------ | -------------------- | --------------- |
 | OCTOFLARE_APP_ID            | GitHub App ID                                    |                      |                 |
 | OCTOFLARE_PRIVATE_KEY_PKCS8 | GitHub App private key converted to PKCS8 format | ✔︎                  |                 |
