@@ -1,6 +1,6 @@
 {
   "name": "create-octoflare",
-  "version": "0.24.16",
+  "version": "0.24.17",
   "description": "🌤️ A CLI for creating new Octoflare projects",
   "type": "module",
   "bin": "dist/index.js",
