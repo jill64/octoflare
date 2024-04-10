@@ -12,7 +12,7 @@
   "devDependencies": {
     "octoflare": "0.24.28",
     "esbuild": "0.20.2",
-    "eslint": "8.57.0",
+    "eslint": "9.0.0",
     "prettier": "3.2.5",
     "wrangler": "3.48.0"
   }
