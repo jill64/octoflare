@@ -16,7 +16,7 @@
     "@jill64/svelte-tailwind": "1.2.24",
     "@sveltejs/adapter-cloudflare": "4.3.0",
     "@sveltejs/kit": "2.5.5",
-    "svelte": "4.2.13",
+    "svelte": "4.2.14",
     "vite": "5.2.8",
     "@sveltejs/vite-plugin-svelte": "3.1.0"
   }
