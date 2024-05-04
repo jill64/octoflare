@@ -10,7 +10,7 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "octoflare": "0.24.33",
+    "octoflare": "0.24.34",
     "esbuild": "0.20.2",
     "eslint": "8.57.0",
     "prettier": "3.2.5",
