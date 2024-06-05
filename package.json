@@ -16,7 +16,7 @@
     "@jill64/prettier-config": "1.0.0",
     "@jill64/playwright-config": "2.3.0",
     "@playwright/test": "1.44.1",
-    "prettier": "3.3.0",
+    "prettier": "3.3.1",
     "publint": "0.2.8",
     "depcheck": "1.4.7",
     "eslint": "8.57.0",
