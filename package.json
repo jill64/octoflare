@@ -14,7 +14,7 @@
     "@types/node": "20.12.10",
     "@jill64/eslint-config-ts": "1.1.26",
     "@jill64/prettier-config": "1.0.0",
-    "@jill64/playwright-config": "2.3.0",
+    "@jill64/playwright-config": "2.3.1",
     "@playwright/test": "1.44.1",
     "prettier": "3.3.2",
     "publint": "0.2.8",
