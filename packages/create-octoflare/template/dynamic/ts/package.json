@@ -7,6 +7,6 @@
     "@typescript-eslint/eslint-plugin": "7.13.1",
     "@typescript-eslint/parser": "7.13.1",
     "tsx": "4.14.1",
-    "typescript": "5.4.5"
+    "typescript": "5.5.2"
   }
 }
