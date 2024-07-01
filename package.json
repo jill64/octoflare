@@ -1,5 +1,5 @@
 {
-  "version": "0.24.44",
+  "version": "0.24.45",
   "type": "module",
   "scripts": {
     "dev": "pnpm -r dev",
@@ -20,7 +20,7 @@
     "publint": "0.2.8",
     "depcheck": "1.4.7",
     "eslint": "8.57.0",
-    "typescript": "5.5.2",
+    "typescript": "5.5.3",
     "vitest": "1.6.0"
   }
 }
