@@ -17,7 +17,7 @@
     "@sveltejs/adapter-cloudflare": "4.5.0",
     "@sveltejs/kit": "2.5.18",
     "svelte": "4.2.18",
-    "vite": "5.3.2",
+    "vite": "5.3.3",
     "@sveltejs/vite-plugin-svelte": "3.1.1"
   }
 }
