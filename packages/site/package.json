@@ -14,7 +14,7 @@
     "@jill64/sentry-sveltekit-cloudflare": "1.7.15",
     "@jill64/svelte-suite": "1.2.195",
     "@jill64/svelte-tailwind": "1.2.41",
-    "@sveltejs/adapter-cloudflare": "4.5.0",
+    "@sveltejs/adapter-cloudflare": "4.6.0",
     "@sveltejs/kit": "2.5.18",
     "svelte": "4.2.18",
     "vite": "5.3.3",
