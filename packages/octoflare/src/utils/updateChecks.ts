@@ -1,3 +1,4 @@
+import { Octokit } from 'octokit'
 import { ActionOctokit } from '../action/index.js'
 import { ChecksOutput } from '../index.js'
 import { CheckRunStatus } from '../types/CheckRunStatus.js'
@@ -14,7 +15,7 @@ export const updateChecks = ({
   details_url,
   status
 }: {
-  kit: ActionOctokit
+  kit: ActionOctokit | Octokit
   check_run_id: number
   owner: string
   repo: string

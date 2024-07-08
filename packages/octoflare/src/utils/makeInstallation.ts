@@ -1,6 +1,6 @@
 import { WebhookEvent } from '@octokit/webhooks-types'
 import { Buffer } from 'node:buffer'
-import { App } from 'octokit'
+import { App, Octokit } from 'octokit'
 import { ActionOctokit } from '../action/index.js'
 import {
   InstallationGetFile,
@@ -34,7 +34,7 @@ export const makeInstallation = async <Data extends OctoflarePayloadData>(
   }) => unknown
 ): Promise<{
   installation: OctoflareInstallation<Data> | null
-  app_kit: ActionOctokit | null
+  app_kit: ActionOctokit | Octokit | null
 }> => {
   if (!('installation' in payload && payload.installation)) {
     return {

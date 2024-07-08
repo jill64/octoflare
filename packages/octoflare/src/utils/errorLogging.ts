@@ -1,3 +1,4 @@
+import { Octokit } from 'octokit'
 import { ActionOctokit } from '../action/index.js'
 import { limitStr } from './limitStr.js'
 
@@ -8,7 +9,7 @@ export const errorLogging = async ({
   error,
   info
 }: {
-  octokit: ActionOctokit
+  octokit: ActionOctokit | Octokit
   repo: string
   owner: string
   error: Error
