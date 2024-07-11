@@ -28,7 +28,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jill64/octoflare.git",
-    "image": "https://opengraph.githubassets.com/5d59cf7ed4b3226fae12597c28524de68f18a8f7ed1b55a698939aea903c51a3/jill64/octoflare"
+    "image": "https://opengraph.githubassets.com/556370f5db9fad71f74bbaf56432773007883417b12b42802bd9ae037f97fa71/jill64/octoflare"
   },
   "scripts": {
     "build": "tsc && publint",
