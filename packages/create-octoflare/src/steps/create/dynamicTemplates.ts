@@ -41,7 +41,8 @@ export const dynamicTemplates = async (params: Params) => {
           return (a, b) => ({
             ...a,
             ...b,
-            lint: a.lint && b.lint ? `${a.lint} && ${b.lint}` : a.lint ?? b.lint
+            lint:
+              a.lint && b.lint ? `${a.lint} && ${b.lint}` : (a.lint ?? b.lint)
           })
         }
       }
