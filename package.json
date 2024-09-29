@@ -1,5 +1,5 @@
 {
-  "version": "0.25.11",
+  "version": "0.25.12",
   "type": "module",
   "scripts": {
     "dev": "pnpm -r dev",
