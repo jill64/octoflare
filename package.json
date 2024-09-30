@@ -20,7 +20,7 @@
     "publint": "0.2.11",
     "depcheck": "1.4.7",
     "eslint": "8.57.1",
-    "typescript": "5.5.4",
+    "typescript": "5.6.2",
     "vitest": "2.1.1"
   }
 }
