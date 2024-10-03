@@ -68,7 +68,7 @@
   },
   "prettier": "@jill64/prettier-config",
   "dependencies": {
-    "@actions/core": "1.10.1",
+    "@actions/core": "1.11.0",
     "@actions/github": "6.0.0",
     "@cloudflare/workers-types": "4.20240925.0",
     "@octokit/webhooks-types": "7.5.1",
