@@ -15,7 +15,7 @@
     "@jill64/eslint-config-ts": "1.1.31",
     "@jill64/prettier-config": "1.0.0",
     "@jill64/playwright-config": "2.4.2",
-    "@playwright/test": "1.48.1",
+    "@playwright/test": "1.49.0",
     "prettier": "3.3.3",
     "publint": "0.2.12",
     "depcheck": "1.4.7",
