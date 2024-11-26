@@ -17,7 +17,7 @@
     "@jill64/playwright-config": "2.4.2",
     "@playwright/test": "1.48.1",
     "prettier": "3.3.3",
-    "publint": "0.2.11",
+    "publint": "0.2.12",
     "depcheck": "1.4.7",
     "eslint": "8.57.1",
     "typescript": "5.5.4",
