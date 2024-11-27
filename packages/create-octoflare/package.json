@@ -39,7 +39,7 @@
   },
   "prettier": "@jill64/prettier-config",
   "dependencies": {
-    "@clack/prompts": "0.7.0",
+    "@clack/prompts": "0.8.2",
     "deepmerge": "4.3.1",
     "kleur": "4.1.5"
   }
