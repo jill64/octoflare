@@ -16,7 +16,7 @@
     "@jill64/prettier-config": "1.0.0",
     "@jill64/playwright-config": "2.4.2",
     "@playwright/test": "1.49.1",
-    "typescript": "5.5.4",
+    "typescript": "5.7.2",
     "vitest": "2.1.8"
   }
 }
