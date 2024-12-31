@@ -1,6 +1,6 @@
 {
   "name": "create-octoflare",
-  "version": "0.25.25",
+  "version": "0.26.0",
   "description": "🌤️ A CLI for creating new Octoflare projects",
   "type": "module",
   "bin": "dist/index.js",
@@ -28,13 +28,13 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jill64/octoflare.git",
-    "image": "https://opengraph.githubassets.com/5953a9a8513e460208dd66c1f30a54ff59c01b31799c6613846f8dd35ccb8707/jill64/octoflare"
+    "image": "https://opengraph.githubassets.com/6a183d751efbe8c18dda7c813c966f3b066c42a1fe9d08c8292d03c494d37853/jill64/octoflare"
   },
   "scripts": {
-    "build": "tsc && publint",
+    "build": "tsc && npx publint",
     "prepack": "pnpm build",
-    "lint": "eslint .",
-    "format": "prettier -w .",
+    "lint": "npx eslint .",
+    "format": "npx prettier -w .",
     "test:run": "npx tsx src/index.ts"
   },
   "prettier": "@jill64/prettier-config",

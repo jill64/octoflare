@@ -1,7 +1,6 @@
-import { i18nInit } from '@jill64/svelte-suite'
+import { init } from '@jill64/svelte-suite/i18n/app'
 
-export const { match, attach, translate } = i18nInit({
+export const i = init({
   locales: ['en', 'ja'],
-  slug: '[locale=locale]',
   defaultLocale: 'en'
 })
