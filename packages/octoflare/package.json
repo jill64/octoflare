@@ -72,6 +72,7 @@
     "@actions/github": "6.0.0",
     "@cloudflare/workers-types": "4.20241230.0",
     "@octokit/webhooks-types": "7.6.1",
-    "octokit": "4.0.3"
+    "octokit": "4.0.3",
+    "publint": "0.2.12"
   }
 }
