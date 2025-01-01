@@ -28,7 +28,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jill64/octoflare.git",
-    "image": "https://opengraph.githubassets.com/5214511611072845c95a8bf9e2dd9567ec7e13fda2d0fe4cd6220de6e6e5091e/jill64/octoflare"
+    "image": "https://opengraph.githubassets.com/7a60516dbd2cd687557c758c9b9dae26ffa4c838638d76a7fec80886a182703b/jill64/octoflare"
   },
   "scripts": {
     "build": "tsc && npx publint",
@@ -41,6 +41,8 @@
   "dependencies": {
     "@clack/prompts": "0.9.0",
     "deepmerge": "4.3.1",
-    "kleur": "4.1.5"
+    "kleur": "4.1.5",
+    "publint": "0.2.12",
+    "prettier": "3.4.2"
   }
 }
