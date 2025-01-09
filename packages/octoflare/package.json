@@ -1,6 +1,6 @@
 {
   "name": "octoflare",
-  "version": "0.26.2",
+  "version": "0.26.3",
   "description": "🌤️ A framework for building GitHub Apps with Cloudflare Worker",
   "type": "module",
   "main": "dist/index.js",
