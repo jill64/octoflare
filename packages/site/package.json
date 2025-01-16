@@ -13,7 +13,7 @@
     "@jill64/eslint-config-svelte": "2.0.4",
     "@jill64/sentry-sveltekit-cloudflare": "2.0.1",
     "@jill64/svelte-suite": "2.0.8",
-    "@jill64/svelte-tailwind": "1.2.76",
+    "@jill64/svelte-tailwind": "1.2.77",
     "@sveltejs/adapter-cloudflare": "5.0.1",
     "@sveltejs/kit": "2.15.1",
     "svelte": "5.16.2",
