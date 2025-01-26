@@ -37,6 +37,11 @@ export type OctoflareInstallation<Data extends OctoflarePayloadData> = {
      * It inherits `owner`, `repo`, `check_run_id` of `createCheckRun`.
      */
     updateCheckRun: UpdateCheckRun
+
+    /**
+     * Check run id.
+     */
+    check_run_id: number
   }>
 
   /**
