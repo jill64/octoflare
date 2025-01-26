@@ -214,6 +214,7 @@ export const makeInstallation = async <Data extends OctoflarePayloadData>(
 
   return {
     installation: {
+      id: installation_id,
       kit,
       createCheckRun,
       startWorkflow,

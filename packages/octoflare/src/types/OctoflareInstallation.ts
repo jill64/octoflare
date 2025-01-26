@@ -12,6 +12,7 @@ export type OctoflareInstallation<Data extends OctoflarePayloadData> = {
    * Octokit instance with installation access token.
    */
   kit: Octokit
+  id: number
   createCheckRun: (params: {
     owner: string
     repo: string
