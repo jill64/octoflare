@@ -11,12 +11,15 @@
     "test:e2e": "playwright test"
   },
   "devDependencies": {
-    "@types/node": "22.10.7",
+    "@types/node": "22.13.0",
     "@jill64/eslint-config-ts": "2.0.4",
     "@jill64/prettier-config": "1.0.0",
     "@jill64/playwright-config": "2.4.2",
-    "@playwright/test": "1.50.0",
+    "@playwright/test": "1.50.1",
     "typescript": "5.7.3",
-    "vitest": "3.0.2"
+    "vitest": "3.0.4",
+    "publint": "0.3.2",
+    "prettier": "3.4.2",
+    "eslint": "9.19.0"
   }
 }

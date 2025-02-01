@@ -4,20 +4,22 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-kit sync && npx svelte-check",
-    "lint": "pnpm check && npx eslint .",
-    "format": "npx psvx"
+    "check": "svelte-kit sync && svelte-check",
+    "lint": "pnpm check && eslint .",
+    "format": "psvx"
   },
   "prettier": "@jill64/prettier-config",
   "devDependencies": {
     "@jill64/eslint-config-svelte": "2.0.5",
     "@jill64/sentry-sveltekit-cloudflare": "2.0.6",
-    "@jill64/svelte-suite": "2.0.10",
+    "@jill64/svelte-suite": "2.1.1",
     "@jill64/svelte-tailwind": "1.2.79",
     "@sveltejs/adapter-cloudflare": "5.0.1",
     "@sveltejs/kit": "2.16.1",
     "svelte": "5.19.3",
     "vite": "6.0.10",
-    "@sveltejs/vite-plugin-svelte": "5.0.3"
+    "@sveltejs/vite-plugin-svelte": "5.0.3",
+    "psvx": "1.0.10",
+    "svelte-check": "4.1.4"
   }
 }

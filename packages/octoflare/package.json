@@ -61,19 +61,17 @@
     "image": "https://opengraph.githubassets.com/96d9698b323771d69d6546e91f26461ff6942310255c378b7e29d3eeb94aff91/jill64/octoflare"
   },
   "scripts": {
-    "build": "tsc && npx publint",
+    "build": "tsc && publint",
     "prepack": "npm run build",
-    "lint": "npx eslint .",
-    "format": "npx prettier -w ."
+    "lint": "eslint .",
+    "format": "prettier -w ."
   },
   "prettier": "@jill64/prettier-config",
   "dependencies": {
     "@actions/core": "1.11.1",
     "@actions/github": "6.0.0",
-    "@cloudflare/workers-types": "4.20250124.3",
+    "@cloudflare/workers-types": "4.20250129.0",
     "@octokit/webhooks-types": "7.6.1",
-    "octokit": "4.0.3",
-    "publint": "0.2.12",
-    "prettier": "3.4.2"
+    "octokit": "4.1.0"
   }
 }

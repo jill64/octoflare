@@ -31,18 +31,16 @@
     "image": "https://opengraph.githubassets.com/96d9698b323771d69d6546e91f26461ff6942310255c378b7e29d3eeb94aff91/jill64/octoflare"
   },
   "scripts": {
-    "build": "tsc && npx publint",
+    "build": "tsc && publint",
     "prepack": "pnpm build",
-    "lint": "npx eslint .",
-    "format": "npx prettier -w .",
-    "test:run": "npx tsx src/index.ts"
+    "lint": "eslint .",
+    "format": "prettier -w .",
+    "test:run": "tsx src/index.ts"
   },
   "prettier": "@jill64/prettier-config",
   "dependencies": {
     "@clack/prompts": "0.9.1",
     "deepmerge": "4.3.1",
-    "kleur": "4.1.5",
-    "publint": "0.3.2",
-    "prettier": "3.4.2"
+    "kleur": "4.1.5"
   }
 }
