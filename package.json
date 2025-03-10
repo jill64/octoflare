@@ -20,7 +20,7 @@
     "@playwright/test": "1.51.0",
     "typescript": "5.8.2",
     "@types/bun": "1.2.4",
-    "publint": "0.3.2",
+    "publint": "0.3.9",
     "prettier": "3.4.2",
     "eslint": "9.19.0"
   }
