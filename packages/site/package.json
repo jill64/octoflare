@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite build && vite preview",
     "check": "svelte-kit sync && svelte-check",
     "lint": "bun run check && eslint .",
     "format": "psvx"
