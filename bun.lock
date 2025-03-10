@@ -33,7 +33,7 @@
         "@actions/github": "6.0.0",
         "@cloudflare/workers-types": "4.20250129.0",
         "@octokit/webhooks-types": "7.6.1",
-        "octokit": "4.1.0",
+        "octokit": "4.1.2",
       },
     },
     "packages/site": {
@@ -726,7 +726,7 @@
 
     "octoflare": ["octoflare@workspace:packages/octoflare"],
 
-    "octokit": ["octokit@4.1.0", "", { "dependencies": { "@octokit/app": "^15.1.2", "@octokit/core": "^6.1.3", "@octokit/oauth-app": "^7.1.4", "@octokit/plugin-paginate-graphql": "^5.2.4", "@octokit/plugin-paginate-rest": "^11.4.0", "@octokit/plugin-rest-endpoint-methods": "^13.3.0", "@octokit/plugin-retry": "^7.1.3", "@octokit/plugin-throttling": "^9.4.0", "@octokit/request-error": "^6.1.6", "@octokit/types": "^13.7.0" } }, "sha512-/UrQAOSvkc+lUUWKNzy4ByAgYU9KpFzZQt8DnC962YmQuDiZb1SNJ90YukCCK5aMzKqqCA+z1kkAlmzYvdYKag=="],
+    "octokit": ["octokit@4.1.2", "", { "dependencies": { "@octokit/app": "^15.1.4", "@octokit/core": "^6.1.4", "@octokit/oauth-app": "^7.1.6", "@octokit/plugin-paginate-graphql": "^5.2.4", "@octokit/plugin-paginate-rest": "^11.4.2", "@octokit/plugin-rest-endpoint-methods": "^13.3.1", "@octokit/plugin-retry": "^7.1.4", "@octokit/plugin-throttling": "^9.4.0", "@octokit/request-error": "^6.1.7", "@octokit/types": "^13.7.0" } }, "sha512-0kcTxJOK3yQrJsRb8wKa28hlTze4QOz4sLuUnfXXnhboDhFKgv8LxS86tFwbsafDW9JZ08ByuVAE8kQbYJIZkA=="],
 
     "ohash": ["ohash@2.0.11", "", {}, "sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ=="],
 
