@@ -1,5 +1,5 @@
 {
-  "version": "2.0.1",
+  "version": "2.1.0",
   "type": "module",
   "workspaces": [
     "packages/*"
@@ -21,7 +21,7 @@
     "typescript": "5.8.2",
     "@types/bun": "1.2.4",
     "publint": "0.3.9",
-    "prettier": "3.4.2",
-    "eslint": "9.19.0"
+    "prettier": "3.5.3",
+    "eslint": "9.22.0"
   }
 }
