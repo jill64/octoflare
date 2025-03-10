@@ -6,6 +6,7 @@
   ],
   "scripts": {
     "build": "cd packages/create-octoflare && bun run build && cd ../octoflare && bun run build && cd ../site && bun run build",
+    "preview": "cd packages/site && bun run preview",
     "lint": "cd packages/create-octoflare && bun run lint && cd ../octoflare && bun run lint && cd ../site && bun run lint",
     "format": "cd packages/create-octoflare && bun run format && cd ../octoflare && bun run format && cd ../site && bun run format",
     "test": "bun test **/*.test.ts",
