@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest'
+import { expect, test } from 'bun:test'
 import { timingSafeEqual } from './timingSafeEqual.js'
 
 test('timingSafeEqual', () => {
