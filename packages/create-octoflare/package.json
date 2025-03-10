@@ -32,10 +32,10 @@
   },
   "scripts": {
     "build": "tsc && publint",
-    "prepack": "pnpm build",
+    "prepack": "bun run build",
     "lint": "eslint .",
     "format": "prettier -w .",
-    "test:run": "tsx src/index.ts"
+    "test:run": "bun src/index.ts"
   },
   "prettier": "@jill64/prettier-config",
   "dependencies": {

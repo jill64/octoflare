@@ -62,7 +62,7 @@
   },
   "scripts": {
     "build": "tsc && publint",
-    "prepack": "npm run build",
+    "prepack": "bun run build",
     "lint": "eslint .",
     "format": "prettier -w ."
   },
