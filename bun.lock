@@ -41,7 +41,7 @@
       "devDependencies": {
         "@jill64/eslint-config-svelte": "2.2.0",
         "@jill64/sentry-sveltekit-cloudflare": "2.0.6",
-        "@jill64/svelte-suite": "2.1.1",
+        "@jill64/svelte-suite": "2.2.0",
         "@jill64/svelte-tailwind": "1.2.80",
         "@sveltejs/adapter-cloudflare": "5.0.3",
         "@sveltejs/kit": "2.19.0",
@@ -242,7 +242,7 @@
 
     "@jill64/svelte-storage": ["@jill64/svelte-storage@2.0.0", "", { "dependencies": { "@jill64/typed-storage": "3.1.5" }, "peerDependencies": { "@sveltejs/kit": "^2.0.0", "svelte": "^5.0.0" } }, "sha512-hOQPKxtTOTDNB7+4mz4rViNTUWB/1dUogpkG7BEuNnhRJwH/1+ZEFIuQWFxLwCpoj/9/ZCjoUKss4qL7B8P4Yg=="],
 
-    "@jill64/svelte-suite": ["@jill64/svelte-suite@2.1.1", "", { "dependencies": { "@jill64/svelte-dark-theme": "5.1.2", "@jill64/svelte-i18n": "2.2.0", "@jill64/svelte-input": "2.0.2", "@jill64/svelte-menu": "2.0.0", "@jill64/svelte-ogp": "2.0.2", "@jill64/svelte-storage": "2.0.0", "@jill64/svelte-toast": "2.1.6", "svelte-feather-icons": "4.2.0", "svelte-inline-modal": "2.0.1", "svelte-qparam": "2.1.1", "ts-serde": "1.0.8" }, "peerDependencies": { "@sveltejs/kit": "^2.0.0", "svelte": "^5.0.0" } }, "sha512-nlrl7LXBxNje3N+Qg0rm0e+dyBqwgfTfF9I3czvv2cQztG+G2qQUcqPO6VCnEuk7KyR/1tB85+tb9AwNsTsSsA=="],
+    "@jill64/svelte-suite": ["@jill64/svelte-suite@2.2.0", "", { "dependencies": { "@jill64/svelte-dark-theme": "5.1.2", "@jill64/svelte-i18n": "2.2.0", "@jill64/svelte-input": "2.0.2", "@jill64/svelte-menu": "2.0.0", "@jill64/svelte-ogp": "2.0.2", "@jill64/svelte-storage": "2.0.0", "@jill64/svelte-toast": "2.1.6", "svelte-feather-icons": "4.2.0", "svelte-inline-modal": "2.0.1", "svelte-qparam": "2.1.1", "ts-serde": "1.0.8" }, "peerDependencies": { "@sveltejs/kit": "^2.0.0", "svelte": "^5.0.0" } }, "sha512-gO7Vl5FLM/FuxoQyO3K/yIy7tjf/bVGvGN67XGVFxkz/Fe3gGstUiVsI0j9eaf8yhV+FdyuePPnTFRum+eGDSA=="],
 
     "@jill64/svelte-tailwind": ["@jill64/svelte-tailwind@1.2.80", "", { "dependencies": { "@jill64/tailwind-grid-auto": "1.4.2", "@jill64/tailwind-reactions": "1.3.2", "autoprefixer": "10.4.20", "postcss": "8.5.1", "postcss-load-config": "6.0.1", "tailwindcss": "3.4.17" } }, "sha512-ReARe65NqNr3SMTfIrHhtECkWCTbvsUahgwwB2tdu8SZIPR3jWSIMRTlBXNquAnaj+IzjqYos1++vU9By/3BcA=="],
 
