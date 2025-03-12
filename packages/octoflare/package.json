@@ -58,7 +58,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jill64/octoflare.git",
-    "image": "https://opengraph.githubassets.com/7aa4364ddda62b9c428afefee05c570492e92ed6b8fbbc2d46a4388d1d78ce85/jill64/octoflare"
+    "image": "https://opengraph.githubassets.com/11a693063199c6833977c29968ab9d15c65622a2d3cb0ee8b280403769362d31/jill64/octoflare"
   },
   "scripts": {
     "build": "tsc && publint",
@@ -70,7 +70,7 @@
   "dependencies": {
     "@actions/core": "1.11.1",
     "@actions/github": "6.0.0",
-    "@cloudflare/workers-types": "4.20250129.0",
+    "@cloudflare/workers-types": "4.20250311.0",
     "@octokit/webhooks-types": "7.6.1",
     "octokit": "4.1.2"
   }
