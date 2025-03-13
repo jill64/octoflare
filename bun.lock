@@ -41,7 +41,7 @@
       "devDependencies": {
         "@jill64/eslint-config-svelte": "2.2.1",
         "@jill64/sentry-sveltekit-cloudflare": "2.0.6",
-        "@jill64/svelte-suite": "2.2.0",
+        "@jill64/svelte-suite": "2.2.1",
         "@jill64/svelte-tailwind": "1.2.80",
         "@sveltejs/adapter-cloudflare": "5.0.3",
         "@sveltejs/kit": "2.19.0",
@@ -234,7 +234,7 @@
 
     "@jill64/svelte-input": ["@jill64/svelte-input@2.0.2", "", { "dependencies": { "@jill64/svelte-observer": "0.0.1", "bignumber.js": "9.1.2", "svelte-loading-spinners": "0.3.6" }, "peerDependencies": { "svelte": "^5.0.0" } }, "sha512-oJEmMS9NhyjRerbSoZ5Bgv/U+TJs3sXCwoWot8cKswG+3MS1i2YT12WHPHD903mPqWOufdd9ZucEt4Gl9KtigQ=="],
 
-    "@jill64/svelte-menu": ["@jill64/svelte-menu@2.0.0", "", { "peerDependencies": { "svelte": "^5.0.0" } }, "sha512-Q3IOGWQy6hgGo+5Q/nTaxVASl832UVbCSnY7Wm7zTKUZzH6njwSCKYAOjss4bD/ciSrBHqJWxuWcvw9SCSgQ/Q=="],
+    "@jill64/svelte-menu": ["@jill64/svelte-menu@2.0.1", "", { "peerDependencies": { "svelte": "^5.0.0" } }, "sha512-thmKHTqwZFWcMoEDnvmVP9R/ie/A0H7zPfYwbVTpOYPhNT0Xy9oinGIhWWSvjQQoSCL8y8PR+cbJgd0Wm0Y8yQ=="],
 
     "@jill64/svelte-observer": ["@jill64/svelte-observer@0.0.1", "", { "peerDependencies": { "svelte": "^5.0.0" } }, "sha512-M+lfGrvfYM9C9svCKXvywurORtBBeSH61eyJ092yJpGlDawIiE/VWu5/L5Drr1wYUs/p176+NEsbzKnjWHgS1Q=="],
 
@@ -242,7 +242,7 @@
 
     "@jill64/svelte-storage": ["@jill64/svelte-storage@2.0.0", "", { "dependencies": { "@jill64/typed-storage": "3.1.5" }, "peerDependencies": { "@sveltejs/kit": "^2.0.0", "svelte": "^5.0.0" } }, "sha512-hOQPKxtTOTDNB7+4mz4rViNTUWB/1dUogpkG7BEuNnhRJwH/1+ZEFIuQWFxLwCpoj/9/ZCjoUKss4qL7B8P4Yg=="],
 
-    "@jill64/svelte-suite": ["@jill64/svelte-suite@2.2.0", "", { "dependencies": { "@jill64/svelte-dark-theme": "5.1.2", "@jill64/svelte-i18n": "2.2.0", "@jill64/svelte-input": "2.0.2", "@jill64/svelte-menu": "2.0.0", "@jill64/svelte-ogp": "2.0.2", "@jill64/svelte-storage": "2.0.0", "@jill64/svelte-toast": "2.1.6", "svelte-feather-icons": "4.2.0", "svelte-inline-modal": "2.0.1", "svelte-qparam": "2.1.1", "ts-serde": "1.0.8" }, "peerDependencies": { "@sveltejs/kit": "^2.0.0", "svelte": "^5.0.0" } }, "sha512-gO7Vl5FLM/FuxoQyO3K/yIy7tjf/bVGvGN67XGVFxkz/Fe3gGstUiVsI0j9eaf8yhV+FdyuePPnTFRum+eGDSA=="],
+    "@jill64/svelte-suite": ["@jill64/svelte-suite@2.2.1", "", { "dependencies": { "@jill64/svelte-dark-theme": "5.1.2", "@jill64/svelte-i18n": "2.2.0", "@jill64/svelte-input": "2.0.2", "@jill64/svelte-menu": "2.0.1", "@jill64/svelte-ogp": "2.0.2", "@jill64/svelte-storage": "2.0.0", "@jill64/svelte-toast": "2.1.6", "svelte-feather-icons": "4.2.0", "svelte-inline-modal": "2.0.1", "svelte-qparam": "2.1.1", "ts-serde": "1.0.8" }, "peerDependencies": { "@sveltejs/kit": "^2.0.0", "svelte": "^5.0.0" } }, "sha512-CCCsCQ5hOtNcsxbZKHE6oNnYZ4Od4tpy38BXQO0xIdbZI4L+UhJhXWP/W8GKnbd+/Dj6AGDwpc6SnN+4tLTTpw=="],
 
     "@jill64/svelte-tailwind": ["@jill64/svelte-tailwind@1.2.80", "", { "dependencies": { "@jill64/tailwind-grid-auto": "1.4.2", "@jill64/tailwind-reactions": "1.3.2", "autoprefixer": "10.4.20", "postcss": "8.5.1", "postcss-load-config": "6.0.1", "tailwindcss": "3.4.17" } }, "sha512-ReARe65NqNr3SMTfIrHhtECkWCTbvsUahgwwB2tdu8SZIPR3jWSIMRTlBXNquAnaj+IzjqYos1++vU9By/3BcA=="],
 
@@ -985,6 +985,8 @@
     "@eslint-community/eslint-utils/eslint-visitor-keys": ["eslint-visitor-keys@3.4.3", "", {}, "sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag=="],
 
     "@humanfs/node/@humanwhocodes/retry": ["@humanwhocodes/retry@0.3.1", "", {}, "sha512-JBxkERygn7Bv/GbN5Rv8Ul6LVknS+5Bp6RgDC/O8gEBU/yeH5Ui5C/OlWrTb6qct7LjjfT6Re2NxB0ln0yYybA=="],
+
+    "@jill64/svelte-i18n/@jill64/svelte-menu": ["@jill64/svelte-menu@2.0.0", "", { "peerDependencies": { "svelte": "^5.0.0" } }, "sha512-Q3IOGWQy6hgGo+5Q/nTaxVASl832UVbCSnY7Wm7zTKUZzH6njwSCKYAOjss4bD/ciSrBHqJWxuWcvw9SCSgQ/Q=="],
 
     "@octokit/app/@octokit/core": ["@octokit/core@6.1.4", "", { "dependencies": { "@octokit/auth-token": "^5.0.0", "@octokit/graphql": "^8.1.2", "@octokit/request": "^9.2.1", "@octokit/request-error": "^6.1.7", "@octokit/types": "^13.6.2", "before-after-hook": "^3.0.2", "universal-user-agent": "^7.0.0" } }, "sha512-lAS9k7d6I0MPN+gb9bKDt7X8SdxknYqAMh44S5L+lNqIN2NuV8nvv3g8rPp7MuRxcOpxpUIATWprO0C34a8Qmg=="],
 
