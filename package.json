@@ -19,7 +19,7 @@
     "@jill64/playwright-config": "3.0.0",
     "@playwright/test": "1.51.1",
     "typescript": "5.8.2",
-    "@types/bun": "1.2.5",
+    "@types/bun": "1.2.6",
     "publint": "0.3.9",
     "prettier": "3.5.3",
     "eslint": "9.23.0"
