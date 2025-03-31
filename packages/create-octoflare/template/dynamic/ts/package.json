@@ -4,8 +4,8 @@
     "lint": "tsc"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "8.28.0",
-    "@typescript-eslint/parser": "8.28.0",
+    "@typescript-eslint/eslint-plugin": "8.29.0",
+    "@typescript-eslint/parser": "8.29.0",
     "tsx": "4.19.3",
     "typescript": "5.8.2"
   }
