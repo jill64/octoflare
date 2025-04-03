@@ -11,13 +11,13 @@
         "@types/node": "22.13.10",
         "eslint": "9.23.0",
         "prettier": "3.5.3",
-        "publint": "0.3.9",
+        "publint": "0.3.10",
         "typescript": "5.8.2",
       },
     },
     "packages/create-octoflare": {
       "name": "create-octoflare",
-      "version": "2.1.11",
+      "version": "2.1.12",
       "bin": "dist/index.js",
       "dependencies": {
         "@clack/prompts": "0.10.0",
@@ -27,7 +27,7 @@
     },
     "packages/octoflare": {
       "name": "octoflare",
-      "version": "2.1.11",
+      "version": "2.1.12",
       "dependencies": {
         "@actions/core": "1.11.1",
         "@actions/github": "6.0.0",
@@ -740,7 +740,7 @@
 
     "package-json-from-dist": ["package-json-from-dist@1.0.1", "", {}, "sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw=="],
 
-    "package-manager-detector": ["package-manager-detector@0.2.11", "", { "dependencies": { "quansync": "^0.2.7" } }, "sha512-BEnLolu+yuz22S56CU1SUKq3XC3PkwD5wv4ikR4MfGvnRVcmzXR9DwSlW2fEamyTPyXHomBJRzgapeuBvRNzJQ=="],
+    "package-manager-detector": ["package-manager-detector@1.1.0", "", {}, "sha512-Y8f9qUlBzW8qauJjd/eu6jlpJZsuPJm2ZAV0cDVd420o4EdpH5RPdoCv+60/TdJflGatr4sDfpAL6ArWZbM5tA=="],
 
     "parent-module": ["parent-module@1.0.1", "", { "dependencies": { "callsites": "^3.0.0" } }, "sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g=="],
 
@@ -796,11 +796,9 @@
 
     "psvx": ["psvx@1.0.14", "", { "dependencies": { "prettier": "3.5.3", "prettier-plugin-svelte": "3.3.3" }, "bin": { "psvx": "index.js" } }, "sha512-ihYhDB6jMsqP55rARXX6nxZwGtBMNcRDzSKucUOX8okNtUfjFOror8GuaFV/cNKgWhcRVDc9TCiIwF941Uc9qg=="],
 
-    "publint": ["publint@0.3.9", "", { "dependencies": { "@publint/pack": "^0.1.2", "package-manager-detector": "^0.2.9", "picocolors": "^1.1.1", "sade": "^1.8.1" }, "bin": { "publint": "src/cli.js" } }, "sha512-irTwfRfYW38vomkxxoiZQtFtUOQKpz5m0p9Z60z4xpXrl1KmvSrX1OMARvnnolB5usOXeNfvLj6d/W3rwXKfBQ=="],
+    "publint": ["publint@0.3.10", "", { "dependencies": { "@publint/pack": "^0.1.2", "package-manager-detector": "^1.1.0", "picocolors": "^1.1.1", "sade": "^1.8.1" }, "bin": { "publint": "src/cli.js" } }, "sha512-xl9X9x0iyOURsAD7IPQJAQ5TgGpozs5K8KUtqzQBSxJqtKH74ReeCpjr2jw9MFOsY9q/EbXSJNkSFM2mgyu38g=="],
 
     "punycode": ["punycode@2.3.1", "", {}, "sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg=="],
-
-    "quansync": ["quansync@0.2.8", "", {}, "sha512-4+saucphJMazjt7iOM27mbFCk+D9dd/zmgMDCzRZ8MEoBfYp7lAvoN38et/phRQF6wOPMy/OROBGgoWeSKyluA=="],
 
     "queue-microtask": ["queue-microtask@1.2.3", "", {}, "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="],
 
