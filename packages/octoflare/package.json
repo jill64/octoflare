@@ -70,7 +70,7 @@
   "dependencies": {
     "@actions/core": "1.11.1",
     "@actions/github": "6.0.0",
-    "@cloudflare/workers-types": "4.20250405.0",
+    "@cloudflare/workers-types": "4.20250406.0",
     "@octokit/webhooks-types": "7.6.1",
     "octokit": "4.1.2"
   }
