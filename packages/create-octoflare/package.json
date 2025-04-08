@@ -1,6 +1,6 @@
 {
   "name": "create-octoflare",
-  "version": "2.1.16",
+  "version": "2.1.17",
   "description": "🌤️ A CLI for creating new Octoflare projects",
   "type": "module",
   "bin": "dist/index.js",
@@ -28,7 +28,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jill64/octoflare.git",
-    "image": "https://opengraph.githubassets.com/ea06bb0f94306c8f0e97f5c93355030af61607101485eca0dbe4378f5bd8bc7a/jill64/octoflare"
+    "image": "https://opengraph.githubassets.com/1ce141fe5ae0cacf32a59ced33a281dc970efe2c1633b75b4d37a7892cac610b/jill64/octoflare"
   },
   "scripts": {
     "build": "tsc && publint",
@@ -39,7 +39,7 @@
   },
   "prettier": "@jill64/prettier-config",
   "dependencies": {
-    "@clack/prompts": "0.10.0",
+    "@clack/prompts": "0.10.1",
     "deepmerge": "4.3.1",
     "kleur": "4.1.5"
   }
