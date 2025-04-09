@@ -1,6 +1,6 @@
 {
   "name": "octoflare",
-  "version": "2.1.18",
+  "version": "2.1.19",
   "description": "🌤️ A framework for building GitHub Apps with Cloudflare Worker",
   "type": "module",
   "main": "dist/index.js",
@@ -58,7 +58,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jill64/octoflare.git",
-    "image": "https://opengraph.githubassets.com/087132fc15dace21ecb9a6bca3fdee1276b3a332c5c5db7a2f00e6c90bf4a1b8/jill64/octoflare"
+    "image": "https://opengraph.githubassets.com/803c1de0a6255365fdaddd21dcabbe8d3800d67ecbb96494e0f051f02e62fd31/jill64/octoflare"
   },
   "scripts": {
     "build": "tsc && publint",
@@ -70,7 +70,7 @@
   "dependencies": {
     "@actions/core": "1.11.1",
     "@actions/github": "6.0.0",
-    "@cloudflare/workers-types": "4.20250408.0",
+    "@cloudflare/workers-types": "4.20250409.0",
     "@octokit/webhooks-types": "7.6.1",
     "octokit": "4.1.2"
   }
