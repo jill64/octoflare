@@ -11,13 +11,13 @@
         "@types/node": "22.13.10",
         "eslint": "9.24.0",
         "prettier": "3.5.3",
-        "publint": "0.3.10",
+        "publint": "0.3.11",
         "typescript": "5.8.3",
       },
     },
     "packages/create-octoflare": {
       "name": "create-octoflare",
-      "version": "2.1.18",
+      "version": "2.1.19",
       "bin": "dist/index.js",
       "dependencies": {
         "@clack/prompts": "0.10.1",
@@ -27,7 +27,7 @@
     },
     "packages/octoflare": {
       "name": "octoflare",
-      "version": "2.1.18",
+      "version": "2.1.19",
       "dependencies": {
         "@actions/core": "1.11.1",
         "@actions/github": "6.0.0",
@@ -796,7 +796,7 @@
 
     "psvx": ["psvx@1.0.14", "", { "dependencies": { "prettier": "3.5.3", "prettier-plugin-svelte": "3.3.3" }, "bin": { "psvx": "index.js" } }, "sha512-ihYhDB6jMsqP55rARXX6nxZwGtBMNcRDzSKucUOX8okNtUfjFOror8GuaFV/cNKgWhcRVDc9TCiIwF941Uc9qg=="],
 
-    "publint": ["publint@0.3.10", "", { "dependencies": { "@publint/pack": "^0.1.2", "package-manager-detector": "^1.1.0", "picocolors": "^1.1.1", "sade": "^1.8.1" }, "bin": { "publint": "src/cli.js" } }, "sha512-xl9X9x0iyOURsAD7IPQJAQ5TgGpozs5K8KUtqzQBSxJqtKH74ReeCpjr2jw9MFOsY9q/EbXSJNkSFM2mgyu38g=="],
+    "publint": ["publint@0.3.11", "", { "dependencies": { "@publint/pack": "^0.1.2", "package-manager-detector": "^1.1.0", "picocolors": "^1.1.1", "sade": "^1.8.1" }, "bin": { "publint": "src/cli.js" } }, "sha512-snArkBXO8Sl1Nlnqr3Y3DCT9CzNw8QxzlFXZ6nRkyEPEUGPRg25lM4IjNQyIyp3vRwpsZ24EEexmKSIZdVMizA=="],
 
     "punycode": ["punycode@2.3.1", "", {}, "sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg=="],
 
