@@ -1,6 +1,6 @@
 {
   "name": "create-octoflare",
-  "version": "2.1.21",
+  "version": "2.1.22",
   "description": "🌤️ A CLI for creating new Octoflare projects",
   "type": "module",
   "bin": "dist/index.js",
@@ -28,7 +28,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jill64/octoflare.git",
-    "image": "https://opengraph.githubassets.com/779f014931e29c2a290641cc09e1c134ae58640531381bc52f26f9d8e1d5649b/jill64/octoflare"
+    "image": "https://opengraph.githubassets.com/5493fe1f1caecce0dea66bd9d7de4a9e3c1c784757542182a4733cc7fe2163ab/jill64/octoflare"
   },
   "scripts": {
     "build": "tsc && publint",
